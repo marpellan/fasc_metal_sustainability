@@ -1,3 +1,12 @@
+### Colors for plot per metal and technology ###
+
+
+
+
+
+
+
+### LCA stuff ###
 IMPACT_METHODS_EP = {
 'Total HH': ('IMPACT World+ Damage 2.1_regionalized for ecoinvent v3.10','Human health', 'Total human health'),
 'Total EQ': ('IMPACT World+ Damage 2.1_regionalized for ecoinvent v3.10','Ecosystem quality', 'Total ecosystem quality'),

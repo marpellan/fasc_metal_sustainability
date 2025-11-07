@@ -1,3 +1,7 @@
+# Ignore raw data and company reports
+OLD
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
