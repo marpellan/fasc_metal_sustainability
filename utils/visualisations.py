@@ -137,7 +137,7 @@ def plot_metal_demand_facets(
             loc="lower center",
             bbox_to_anchor=(0.5, 0.01),
             ncol=min(len(handles), 8),
-            fontsize=8,
+            fontsize=12,
             frameon=False,
         )
 
@@ -149,7 +149,7 @@ def plot_metal_demand_facets(
         fig.savefig(f"{savepath}.svg", bbox_inches="tight")
         print(f"✅ Saved to {savepath}.png / .svg")
 
-    plt.show()
+    #plt.show()
 
 
 
@@ -227,16 +227,16 @@ def plot_metal_demand_stackplots(
     # ---- 1️⃣ By Variable ----
     colors_var = [tech_colors.get(v, "#cccccc") for v in data_var.columns]
     ax1.stackplot(data_var.index, data_var.T, labels=data_var.columns, colors=colors_var)
-    ax1.set_title(f"Total metal demand by {variable_col}", fontsize=12, fontweight="bold")
+    ax1.set_title(f"Total metal demand by {variable_col}", fontsize=9, fontweight="bold")
     ax1.set_ylabel("Metal demand (t)")
-    ax1.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=9)
+    ax1.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=12)
 
     # ---- 2️⃣ By Metal ----
     colors_met = [metal_colors.get(m, "#cccccc") for m in data_met.columns]
     ax2.stackplot(data_met.index, data_met.T, labels=data_met.columns, colors=colors_met)
-    ax2.set_title("Total metal demand by metal", fontsize=12, fontweight="bold")
+    ax2.set_title("Total metal demand by metal", fontsize=9, fontweight="bold")
     ax2.set_ylabel("Metal demand (t)")
-    ax2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=9)
+    ax2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=12)
 
     # ---- Layout ----
     fig.tight_layout(rect=[0, 0, 1, 0.94])
@@ -247,7 +247,100 @@ def plot_metal_demand_stackplots(
         fig.savefig(f"{savepath}.svg", bbox_inches="tight")
         print(f"✅ Figure saved to {savepath}.png and .svg")
 
-    plt.show()
+    #plt.show()
+
+
+def plot_scenario_difference(
+    df,
+    scenario_col="Scenario",
+    value_col="Metal_demand_t",
+    variable_col="Metal",     # or "Variable"
+    scenario_a="High",
+    scenario_b="Low",
+    kind="bar",               # or "strip"
+    figsize=(8, 5),
+    dpi=300,
+    alphabetical=True,        # ✅ NEW
+    savepath=None,
+):
+    """
+    Plot % difference between two scenarios (scenario_a vs scenario_b)
+    across metals or technologies.
+
+    Formula: (A - B) / B * 100
+    Positive = higher in scenario_a
+    Negative = lower in scenario_a
+    """
+
+    # --- Data checks ---
+    for col in [scenario_col, value_col, variable_col]:
+        if col not in df.columns:
+            raise KeyError(f"❌ Column '{col}' not found in DataFrame.")
+
+    # --- Aggregate ---
+    agg = (
+        df.groupby([scenario_col, variable_col])[value_col]
+        .sum()
+        .reset_index()
+        .pivot(index=variable_col, columns=scenario_col, values=value_col)
+    )
+
+    if scenario_a not in agg.columns or scenario_b not in agg.columns:
+        raise ValueError(f"Scenarios '{scenario_a}' and/or '{scenario_b}' not found in '{scenario_col}'.")
+
+    # --- Compute % difference ---
+    agg["% difference"] = (agg[scenario_a] - agg[scenario_b]) / agg[scenario_b] * 100
+
+    # ✅ Sort alphabetically or by magnitude
+    if alphabetical:
+        agg = agg.sort_index()
+    else:
+        agg = agg.sort_values("% difference", ascending=False)
+
+    # --- Plot ---
+    plt.figure(figsize=figsize, dpi=dpi)
+    sns.set_style("whitegrid")
+
+    # Generate color palette: green = positive, red = negative
+    colors = ["#2ca02c" if x > 0 else "#d62728" for x in agg["% difference"]]
+
+    if kind == "bar":
+        ax = sns.barplot(
+            data=agg.reset_index(),
+            x=variable_col,
+            y="% difference",
+            palette=colors,
+        )
+        plt.axhline(0, color="black", linewidth=1)
+        plt.xticks(rotation=90, ha="right")
+        plt.xlabel('')
+        plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
+        plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
+        ax.yaxis.set_major_formatter(mticker.PercentFormatter())
+    else:
+        ax = sns.stripplot(
+            data=agg.reset_index(),
+            x=variable_col,
+            y="% difference",
+            hue="% difference" > 0,
+            palette={True: "#2ca02c", False: "#d62728"},
+            size=8,
+        )
+        plt.axhline(0, color="black", linewidth=1)
+        plt.legend([], [], frameon=False)
+        plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
+        plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
+
+    plt.tight_layout()
+
+    if savepath:
+        plt.savefig(f"{savepath}.png", bbox_inches="tight")
+        plt.savefig(f"{savepath}.svg", bbox_inches="tight")
+        print(f"✅ Saved to {savepath}.png / .svg")
+
+    #plt.show()
+
+    return agg[["% difference"]]
 
 
 
@@ -299,3 +392,135 @@ def plot_masse_stats_per_clas(df, col_clas="CLAS", col_mass="MASSE_NETTE"):
     plt.show()
 
     return summary
+
+
+
+# ======================================================
+# Production scenarios
+# ======================================================
+
+def plot_metal_scenarios_panels(df, color_map,
+                                figsize=(10, 7), dpi=350, savepath=None):
+    """
+    Create 3-panel Matplotlib figure:
+    - Top: line chart across both scenarios (solid/dashed lines)
+    - Bottom: 2 stacked area charts (one per scenario, same y scale)
+    """
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    df_long = df.melt(
+        id_vars=["Scenario", "Year", "Unit"],
+        var_name="Metal",
+        value_name="Value"
+    )
+
+    metals = df_long["Metal"].unique().tolist()
+    scenarios = df_long["Scenario"].unique().tolist()
+    unit = df_long["Unit"].iloc[0]
+
+    # Auto line styles
+    if len(scenarios) == 2:
+        scenario_styles = {
+            scenarios[0]: {"linestyle": "-", "label": f"{scenarios[0]}"},
+            scenarios[1]: {"linestyle": "--", "label": f"{scenarios[1]}"}
+        }
+    else:
+        scenario_styles = {s: {"linestyle": "-", "label": s} for s in scenarios}
+
+    # --- Figure setup ---
+    fig = plt.figure(figsize=figsize, dpi=dpi)
+    gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])
+    ax_top = fig.add_subplot(gs[0, :])
+    ax_bottom_left = fig.add_subplot(gs[1, 0], sharex=ax_top)
+    ax_bottom_right = fig.add_subplot(gs[1, 1], sharex=ax_top)
+
+    # =======================================================
+    # 1️⃣ Top panel: line chart
+    # =======================================================
+    for metal in metals:
+        for scen in scenarios:
+            dsub = df_long[(df_long["Metal"] == metal) & (df_long["Scenario"] == scen)]
+            ax_top.plot(
+                dsub["Year"],
+                dsub["Value"],
+                color=color_map.get(metal, "#cccccc"),
+                linestyle=scenario_styles[scen]["linestyle"],
+                linewidth=1.8,
+                alpha=0.9,
+            )
+
+    ax_top.set_title("Production by metal and scenario", fontsize=12, fontweight="bold")
+    ax_top.set_ylabel(f"Production ({unit})", fontsize=10)
+    #ax_top.grid(True, linestyle="--", alpha=0.3)
+    ax_top.tick_params(labelsize=9)
+    ax_top.set_xlim(df_long["Year"].min(), df_long["Year"].max())
+    ax_top.set_ylim(bottom=0)
+
+
+    xticks = np.arange(df_long["Year"].min(), df_long["Year"].max() + 1, 5)
+    ax_top.set_xticks(xticks)
+
+    # Legend for scenario line styles
+    scen_handles = [
+        plt.Line2D([0], [0], color="black",
+                   linestyle=scenario_styles[s]["linestyle"],
+                   label=scenario_styles[s]["label"]) for s in scenarios
+    ]
+    ax_top.legend(handles=scen_handles, loc="upper left", fontsize=11, frameon=False)
+
+    # =======================================================
+    # 2️⃣ Bottom panels: stacked areas
+    # =======================================================
+    bottom_axes = [ax_bottom_left, ax_bottom_right]
+    y_max = 0
+
+    # find global y limit first
+    for scen in scenarios:
+        d_scen = df_long[df_long["Scenario"] == scen]
+        pivot = d_scen.pivot_table(index="Year", columns="Metal", values="Value",
+                                   aggfunc="sum", fill_value=0)
+        y_max = max(y_max, pivot.sum(axis=1).max())
+
+    # plot each scenario
+    for ax, scen in zip(bottom_axes, scenarios):
+        d_scen = df_long[df_long["Scenario"] == scen]
+        pivot = d_scen.pivot_table(index="Year", columns="Metal",
+                                   values="Value", aggfunc="sum", fill_value=0)
+        cols = [color_map.get(c, "#cccccc") for c in pivot.columns]
+        ax.stackplot(pivot.index, pivot.T, labels=pivot.columns, colors=cols, alpha=0.9)
+        ax.set_title(scen, fontsize=11, fontweight="bold")
+        ax.set_ylabel(f"Production ({unit})", fontsize=9)
+        #ax.grid(True, linestyle="--", alpha=0.3)
+        ax.tick_params(labelsize=9)
+        ax.set_xticks(xticks)
+        #ax.set_xlabel("Year", fontsize=9)
+        ax.set_ylim(0, y_max * 1.05)  # unified y scale + small headroom
+        ax.set_yticks([y for y in ax.get_yticks() if y != 0])
+
+
+    for a in [ax_top, ax_bottom_left, ax_bottom_right]:
+        a.set_yticks([y for y in a.get_yticks() if y != 0])
+
+    # =======================================================
+    # 3️⃣ Shared legend (metals)
+    # =======================================================
+    handles, labels = ax_bottom_right.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center",
+               bbox_to_anchor=(0.5, 0.02),
+               ncol=min(len(labels), 6),
+               fontsize=12, frameon=False)
+
+    # =======================================================
+    # Layout
+    # =======================================================
+    plt.subplots_adjust(hspace=0.35, bottom=0.13, top=0.93, wspace=0.25)
+    #fig.suptitle("Metal production scenarios comparison", fontsize=14, fontweight="bold")
+
+    if savepath:
+        fig.savefig(f"{savepath}.png", bbox_inches="tight")
+        fig.savefig(f"{savepath}.svg", bbox_inches="tight")
+        print(f"✅ Saved to {savepath}.png and .svg")
+
+    #plt.show()
