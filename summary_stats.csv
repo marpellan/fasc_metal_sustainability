@@ -1,0 +1,17 @@
+CLAS,Mean,Median,Min,Max,Count,Q25,Q75
+Autobus scolaire,10332.576709796673,11793.0,2313.0,14982.0,541,8350.0,11793.0
+Autobus (transport public/interurbain),10056.333333333334,11793.0,4200.0,13753.0,9,8350.0,11793.0
+Camion ou tracteur routier (hors réseau),8513.0,8513.0,8513.0,8513.0,7,8513.0,8513.0
+"Camion ou tracteur routier (>3000 kg, transport de biens)",6716.855421686747,7180.0,3201.0,11793.0,83,3879.0,8430.0
+Véhicule-outil (hors réseau),3928.6603773584907,3870.0,259.0,16329.0,53,1902.0,4720.0
+Véhicule-outil (travaux ou déneigement),3564.3636363636365,4210.0,414.0,7300.0,11,628.5,5650.0
+Automobile ou camion léger (usage commercial),2014.8125488154126,2003.0,736.0,2992.0,7682,1707.0,2173.0
+Automobile ou camion léger (promenade),1820.6421949228804,1740.0,1000.0,3402.0,47783,1640.0,2003.0
+Automobile ou camion léger (circulation restreinte),862.75,863.0,748.0,940.0,20,823.0,940.0
+Autres (hors réseau),777.0925925925926,799.0,400.0,801.0,54,799.0,799.0
+"Véhicule tout-terrain (motoquad, autoquad, etc.)",525.8583333333333,799.0,38.0,830.0,120,111.0,799.0
+Motoneige (hors réseau),325.7692307692308,341.0,232.0,341.0,13,341.0,341.0
+Motocyclette (promenade),178.57894736842104,191.0,76.0,268.0,38,131.0,231.0
+Motocyclette (usage commercial),176.33333333333334,172.0,142.0,233.0,18,172.0,172.0
+Cyclomoteur (promenade),91.59627329192547,96.0,70.0,120.0,161,76.0,100.0
+Cyclomoteur (usage commercial),85.42857142857143,76.0,70.0,108.0,7,73.0,99.0

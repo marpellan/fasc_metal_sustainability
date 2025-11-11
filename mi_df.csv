@@ -1,0 +1,693 @@
+Technology,Sub-technology,Metal,Metal intensity,Unit,Reference,Fiability of the data,Comment
+Biomass,Aggregated,Aluminum,3900.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Biomass,Aggregated,Aluminum,1300.0,t/GW,"(Sullivan et al., 2010)",Small variability in data,
+Biomass,Aggregated,Aluminum,271.2,t/GW,"(Van Oorschot et al., 2022), (Bauer 2007, Moss et al 2011)",Variability in data,
+Biomass,Wood energy,Aluminum,184.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Biomass,Aggregated,Chromium,2.0,t/GW,"(Ashby, 2013)",Variability in data,
+Biomass,Wood energy,Chromium,269.0,t/GW,Open LCA Analysis 'Wood energy',Variability in data,
+Biomass,Aggregated,Cobalt,2.0,t/GW,"(Ashby, 2013)",Variability in data,
+Biomass,Wood energy,Cobalt,0.07,t/GW,Open LCA Analysis 'Wood energy',Variability in data,
+Biomass,Aggregated,Concrete,159000.0,t/GW,"(Sullivan et al., 2010)",No comparison,
+Biomass,Aggregated,Copper,2270.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Biomass,Aggregated,Copper,2175.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Biomass,Aggregated,Copper,33.9,t/GW,"(Van Oorschot et al., 2022), (Bauer 2007, Moss et al 2011)",Important variability in data,
+Biomass,Wood energy,Copper,333.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Biomass,Aggregated,Iron,52000.0,t/GW,"(Sullivan et al., 2010)",Small variability in data,
+Biomass,Aggregated,Iron,33594.899999999994,t/GW,"(Van Oorschot et al., 2022), (Bauer 2007, Moss et al 2011)",Small variability in data,
+Biomass,Aggregated,Iron,135047.0,t/GW,"(Watari et al. 2019), (Ashby, 2013)",Variability in data,
+Biomass,Wood energy,Iron,45152.0,t/GW,Open LCA Analysis 'Wood energy',Small variability in data,
+Biomass,Aggregated,Lead,104.0,t/GW,"(Ashby, 2013)",Variability in data,
+Biomass,Wood energy,Lead,4.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Biomass,Wood energy,Manganese,544.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Biomass,Aggregated,Nickel,20.0,t/GW,"(Ashby, 2013)",Important variability in data,
+Biomass,Wood energy,Nickel,1597.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Biomass,Aggregated,Zinc,160.0,t/GW,"(Ashby, 2013)",Variability in data,
+Biomass,Wood energy,Zinc,18.0,t/GW,Open LCA Analysis 'Wood energy',Important variability in data,
+Fossil energy,Coal,Chromium,307.5,t/GW,"(IEA, 2022)",No comparison,
+Fossil energy,Natural gas,Chromium,48.34,t/GW,"(IEA, 2022)",Small variability in data,
+Fossil energy,Coal,Cobalt,201.46,t/GW,"(IEA, 2022)",No comparison,
+Fossil energy,Natural gas,Cobalt,1.8,t/GW,"(IEA, 2022)",No comparison,
+Fossil energy,Coal,Copper,1150.0,t/GW,"(IEA, 2022)",Small variability in data,
+Fossil energy,Natural gas,Copper,1100.0,t/GW,"(IEA, 2022)",Small variability in data,
+Fossil energy,Coal,Manganese,4.63,t/GW,"(IEA, 2022)",No comparison,
+Fossil energy,Coal,Nickel,721.04,t/GW,"(IEA, 2022)",No comparison,
+Fossil energy,Natural gas,Nickel,15.75,t/GW,"(IEA, 2022)",Small variability in data,
+Fossil energy,Coal,Copper,890.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Fossil energy,Hydrogen ,Copper,1110.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Fossil energy,Natural gas,Copper,1110.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Fossil energy,Oil,Copper,1100.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Fossil energy,Coal,Aluminum,1033.5,t/GW,"(Van Oorschot et al., 2022)",Variability in data,
+Fossil energy,Hydrogen ,Aluminum,922.1999999999998,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Fossil energy,Coal,Copper,1510.4999999999998,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Fossil energy,Hydrogen ,Copper,922.1999999999998,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Fossil energy,Coal,Iron,75386.9403,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,Calculated from steel
+Fossil energy,Hydrogen ,Iron,15205.68252,t/GW,"(Van Oorschot et al., 2022)",No comparison,Calculated from steel
+Fossil energy,Aggregated,Aluminum,500.0,t/GW,(Watari et al. 2019),Variability in data,"Oil, coal, natural gas"
+Fossil energy,Aggregated,Copper,90.0,t/GW,(Watari et al. 2019),Important variability in data,"Oil, coal, natural gas"
+Fossil energy,Aggregated,Iron,51376.5,t/GW,(Watari et al. 2019),Small variability in data,"Oil, coal, natural gas ; Calculated from steel"
+Fossil energy,Natural gas,Aluminum,527.0,t/GW,Open LCA Analysis,Small variability in data,
+Fossil energy,Oil,Aluminum,517.6,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Chromium,57.0,t/GW,Open LCA Analysis,Small variability in data,
+Fossil energy,Oil,Chromium,904.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Copper,684.0,t/GW,Open LCA Analysis,Small variability in data,
+Fossil energy,Oil,Copper,1513.0,t/GW,Open LCA Analysis,Small variability in data,
+Fossil energy,Natural gas,Iron,6341.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Oil,Iron,78791.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Lead,5.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Oil,Lead,9.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Magnesium,2.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Manganese,27.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Oil,Manganese,359.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Nickel,49.0,t/GW,Open LCA Analysis,Small variability in data,
+Fossil energy,Oil,Nickel,676.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Natural gas,Zinc,20.0,t/GW,Open LCA Analysis,No comparison,
+Fossil energy,Oil,Zinc,40.0,t/GW,Open LCA Analysis,No comparison,
+Geothermal,Aggregated,Copper,2335.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Geothermal,Aggregated,Iron,579526.92,t/GW,"(Ashby, 2013)",Small variability in data,
+Geothermal,Aggregated,Iron,579526.92,t/GW,"(Ashby, 2013)",Small variability in data,Calculated from steel
+Geothermal,Aggregated,Aluminum,2386.0,t/GW,"(Karlsdóttir et al., 2015)",Variability in data,
+Geothermal,Aggregated,Copper,597.0,t/GW,"(Karlsdóttir et al., 2015)",Variability in data,
+Geothermal,Aggregated,Iron,133513.33380000002,t/GW,"(Karlsdóttir et al., 2015)",Small variability in data,
+Geothermal,Aggregated,Iron,133513.33380000002,t/GW,"(Karlsdóttir et al., 2015)",Small variability in data,Calculated from steel
+Geothermal,Aggregated,Polymers,732.0,t/GW,"(Karlsdóttir et al., 2015)",No comparison,
+Geothermal,Aggregated,Copper,2175.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Geothermal,Aggregated,Chromium,64405.0,t/GW,(Moss et al. 2011),Small variability in data,
+Geothermal,Aggregated,Copper,3605.0,t/GW,(Moss et al. 2011),Small variability in data,
+Geothermal,Aggregated,Iron,800494.8,t/GW,(Moss et al. 2011),Small variability in data,
+Geothermal,Aggregated,Iron,800494.8,t/GW,(Moss et al. 2011),Small variability in data,Calculated from steel
+Geothermal,Aggregated,Manganese,4325.0,t/GW,(Moss et al. 2011),Small variability in data,
+Geothermal,Aggregated,Molybdenum,7209.0,t/GW,(Moss et al. 2011),No comparison,
+Geothermal,Aggregated,Nickel,120155.0,t/GW,(Moss et al. 2011),Variability in data,
+Geothermal,Aggregated,Niobium,128.0,t/GW,(Moss et al. 2011),No comparison,
+Geothermal,Aggregated,Tantalum,64.0,t/GW,(Moss et al. 2011),No comparison,
+Geothermal,Aggregated,Aluminum,46100.0,t/GW,"(Sullivan et al., 2010)",Important variability in data,
+Geothermal,Aggregated,Concrete,459000.0,t/GW,"(Sullivan et al., 2010)",No comparison,
+Geothermal,Aggregated,Iron,348381.6,t/GW,"(Sullivan et al., 2010)",Small variability in data,
+Geothermal,Aggregated,Iron,348381.6,t/GW,"(Sullivan et al., 2010)",Small variability in data,Calculated from steel
+Geothermal,Aggregated,Aluminum,4922.0,t/GW,Open LCA Analysis,Variability in data,
+Geothermal,Aggregated,Chromium,13663.0,t/GW,Open LCA Analysis,Small variability in data,
+Geothermal,Aggregated,Copper,6520.0,t/GW,Open LCA Analysis,Small variability in data,
+Geothermal,Aggregated,Iron,2097520.0,t/GW,Open LCA Analysis,Variability in data,
+Geothermal,Aggregated,Lead,416.0,t/GW,Open LCA Analysis,No comparison,
+Geothermal,Aggregated,Magnesium,208.0,t/GW,Open LCA Analysis,No comparison,
+Geothermal,Aggregated,Manganese,9455.0,t/GW,Open LCA Analysis,Small variability in data,
+Geothermal,Aggregated,Nickel,12023.0,t/GW,Open LCA Analysis,Variability in data,
+Geothermal,Aggregated,Tantalum,0.1,t/GW,Open LCA Analysis,Variability in data,
+Geothermal,Aggregated,Zinc,1917.0,t/GW,Open LCA Analysis,No comparison,
+Hydroelectricity,Aggregated,Aluminum,3400.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Hydroelectricity,Aggregated,Aluminum,1635.0,t/GW,Open LCA Analysis,Small variability in data,
+Hydroelectricity,Aggregated,Chromium,1500.0,t/GW,"(Ashby, 2013)",Variability in data,
+Hydroelectricity,Aggregated,Chromium,12395.0,t/GW,Open LCA Analysis,Variability in data,
+Hydroelectricity,Aggregated,Copper,1050.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Hydroelectricity,Large-scale reservoir,Copper,1713.0,t/GW,"(Dong et al., 2025)",Small variability in data,
+Hydroelectricity,Aggregated,Copper,3160.0,t/GW,"(Lea A., Copper Association, 2016)",Small variability in data,
+Hydroelectricity,Aggregated,Copper,6735.0,t/GW,Open LCA Analysis,Small variability in data,
+Hydroelectricity,Aggregated,Iron,175000.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Hydroelectricity,Aggregated,Iron,338665.0,t/GW,Open LCA Analysis,Small variability in data,
+Hydroelectricity,Aggregated,Lead,300.0,t/GW,"(Ashby, 2013)",Variability in data,
+Hydroelectricity,Aggregated,Lead,59.0,t/GW,Open LCA Analysis,Variability in data,
+Hydroelectricity,Aggregated,Magnesium,100.0,t/GW,"(Ashby, 2013)",Variability in data,
+Hydroelectricity,Aggregated,Magnesium,37.0,t/GW,Open LCA Analysis,Variability in data,
+Hydroelectricity,Aggregated,Manganese,200.0,t/GW,"(Ashby, 2013)",Variability in data,
+Hydroelectricity,Aggregated,Manganese,3393.0,t/GW,Open LCA Analysis,Important variability in data,
+Hydroelectricity,Aggregated,Molybdenum,250.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Hydroelectricity,Large-scale reservoir,Molybdenum,330.0,t/GW,"(Dong et al., 2025)",Small variability in data,
+Hydroelectricity,Aggregated,Nickel,7587.0,t/GW,Open LCA Analysis,Variability in data,
+Hydroelectricity,Aggregated,Zinc,400.0,t/GW,"(Ashby, 2013)",Small variability in data,
+Hydroelectricity,Aggregated,Zinc,253.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Nuclear aggregated,Aluminum,61104.4,t/GW,"(Dones, R. et al. 2007)",Important variability in data,
+Nuclear,Boiling water power plant,Aluminum,577.0,t/GW,Open LCA Analysis,Important variability in data,
+Nuclear,PWR,Aluminum,542.0,t/GW,Open LCA Analysis,Important variability in data,
+Nuclear,PWR,Cadmium,0.4,t/GW,"(Dong et al., 2025)",No comparison,
+Nuclear,Nuclear aggregated,Chromium,427.0,t/GW,(Moss et al. 2013),Variability in data,
+Nuclear,Boiling water power plant,Chromium,5444.0,t/GW,Open LCA Analysis,Variability in data,
+Nuclear,PWR,Chromium,571.0,t/GW,Open LCA Analysis,Variability in data,
+Nuclear,FBR,Copper,37.2,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,HTGR,Copper,24.8,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,PWR,Copper,59.6,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Copper,1345.0,t/GW,"(Fizaine et Court, 2015)",Small variability in data,
+Nuclear,Nuclear aggregated,Copper,1473.4,t/GW,"(IEA, 2022)",Small variability in data,
+Nuclear,Nuclear aggregated,Copper,60.0,t/GW,(Moss et al. 2013),Important variability in data,
+Nuclear,Boiling water power plant,Copper,1523.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,PWR,Copper,1489.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Nuclear aggregated,Dysprosium,1444.3999999999996,t/GW,"(Dones, R. et al. 2007)",Small variability in data,
+Nuclear,PWR,Hafnium,0.5,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Hafnium,1.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,PWR,Indium,1.4,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Indium,2.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Nuclear aggregated,Iron,502.4,t/GW,"(Dones R. et al., 2007)",Important variability in data,
+Nuclear,Boiling water power plant,Iron,72244.0,t/GW,Open LCA Analysis,Variability in data,
+Nuclear,PWR,Iron,65888.0,t/GW,Open LCA Analysis,Variability in data,
+Nuclear,Nuclear aggregated,Iron,476235.42,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Nuclear aggregated,Lead,491.69888000000014,t/GW,"(Dones, R. et al. 2007)",Small variability in data,
+Nuclear,Nuclear aggregated,Lead,4.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Boiling water power plant,Lead,20.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,PWR,Lead,11.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Boiling water power plant,Magnesium,9.0,t/GW,Open LCA Analysis,No comparison,
+Nuclear,PWR,Magnesium,6.0,t/GW,Open LCA Analysis,No comparison,
+Nuclear,Nuclear aggregated,Manganese,147.69,t/GW,"(IEA, 2022)",Small variability in data,
+Nuclear,Boiling water power plant,Manganese,264.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,PWR,Manganese,230.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,FBR,Molybdenum,50.7,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,HTGR,Molybdenum,18.3,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,PWR,Molybdenum,2.5,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,Nuclear aggregated,Molybdenum,70.8,t/GW,"(IEA, 2022)",Variability in data,
+Nuclear,Nuclear aggregated,Molybdenum,71.0,t/GW,(Moss et al. 2013),Variability in data,
+Nuclear,Nuclear aggregated,Molybdenum,70.8,t/GW,"(Hernández D., 2016)",Variability in data,
+Nuclear,FBR,Nickel,50.7,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,HTGR,Nickel,33.7,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,PWR,Nickel,12.4,t/GW,"(Dong et al., 2025)",Variability in data,
+Nuclear,Nuclear aggregated,Nickel,300.0,t/GW,"(Fizaine et Court, 2015)",Variability in data,
+Nuclear,Nuclear aggregated,Nickel,1297.4,t/GW,"(IEA, 2022)",Small variability in data,
+Nuclear,Nuclear aggregated,Nickel,256.0,t/GW,(Moss et al. 2013),Variability in data,
+Nuclear,Boiling water power plant,Nickel,3217.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,PWR,Nickel,3355.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,FBR,Niobium,0.01,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,PWR,Niobium,0.3,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Niobium,2.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,PWR,Silver,7.5,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Silver,8.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Boiling water power plant,Silver,0.06,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Nuclear aggregated,Tin,5.0,t/GW,(Moss et al. 2013),No comparison,
+Nuclear,Boiling water power plant,Tin,0.3,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Nuclear aggregated,Tungsten,5.0,t/GW,(Moss et al. 2013),No comparison,
+Nuclear,FBR,Vanadium,1.7,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,HTGR,Vanadium,1.2,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,PWR,Vanadium,3.0,t/GW,"(Dong et al., 2025)",Small variability in data,
+Nuclear,Nuclear aggregated,Vanadium,1.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Nuclear aggregated,Yttrium,1.0,t/GW,(Moss et al. 2013),No comparison,
+Nuclear,Boiling water power plant,Zinc,87.0,t/GW,Open LCA Analysis,No comparison,
+Nuclear,PWR,Zinc,48.0,t/GW,Open LCA Analysis,No comparison,
+Nuclear,Nuclear aggregated,Zirconium,31.0,t/GW,(Moss et al. 2013),Small variability in data,
+Nuclear,Boiling water power plant,Zirconium,14.0,t/GW,Open LCA Analysis,Small variability in data,
+Nuclear,Nuclear aggregated,Chromium,2190.0,t/GW,"(IEA, 2022)",Variability in data,
+Nuclear,Nuclear aggregated,Hafnium,0.48,t/GW,"(Hernández D., 2016)",Small variability in data,
+Nuclear,Nuclear aggregated,Indium,1.6,t/GW,"(Hernández D., 2016)",Small variability in data,
+Nuclear,Nuclear aggregated,Silver,8.3,t/GW,"(Hernández D., 2016)",Small variability in data,
+Solar CSP,Aggregated,Aluminum,200.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Chromium,3000.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Cobalt,326.0,t/GW,"(IEA, 2022)",No comparison,
+Solar CSP,Aggregated,Concrete,1000000.0,t/GW,(Moss et al. 2011),No comparison,
+Solar CSP,Aggregated,Copper,3000.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Gallium ,692.0,t/GW,(Moss et al. 2011),No comparison,
+Solar CSP,Aggregated,Glass,100000.0,t/GW,(Moss et al. 2011),No comparison,
+Solar CSP,Aggregated,Iron,500000.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Magnesium,4000.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Manganese,100.0,t/GW,(Moss et al. 2011),Important variability in data,
+Solar CSP,Aggregated,Molybdenum,3761.0,t/GW,(Moss et al. 2011),Important variability in data,
+Solar CSP,Aggregated,Nickel,1.0,t/GW,(Moss et al. 2011),Important variability in data,
+Solar CSP,Aggregated,Niobium,2183.0,t/GW,"(IEA, 2022)",Small variability in data,
+Solar CSP,Aggregated,Niobium,1145.0,t/GW,(Moss et al. 2011),Small variability in data,
+Solar CSP,Aggregated,Polymers,100.0,t/GW,(Moss et al. 2011),No comparison,
+Solar CSP,Aggregated,Silver,2000.0,t/GW,(Moss et al. 2011),Important variability in data,
+Solar CSP,Aggregated,Zinc,100.0,t/GW,(Moss et al. 2011),No comparison,
+Solar CSP,CSP parabolic trough,Zinc,650.0,t/GW,(Watari et al. 2019),No comparison,
+Solar CSP,CSP parabolic trough,Vanadium,2.0,t/GW,(Watari et al. 2019),No comparison,
+Solar CSP,CSP parabolic trough,Silver,13.0,t/GW,"(Månberger, 2018)",No comparison,
+Solar CSP,CSP parabolic trough,Silver,13.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Silver,8.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Nickel,940.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar CSP,CSP parabolic trough,Nickel,940.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Nickel,471.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Molybdenum,200.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Molybdenum,200.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Manganese,2000.0,t/GW,"(Pihl et al., 2012)",Variability in data,
+Solar CSP,CSP parabolic trough,Manganese,736.0,t/GW,(Watari et al. 2019),Variability in data,
+Solar CSP,CSP parabolic trough,Magnesium,3000.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Magnesium,1400.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Iron,650000.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Iron,570849.6738,t/GW,(Watari et al. 2019),Small variability in data,Calculated from steel
+Solar CSP,CSP parabolic trough,Copper,3200.0,t/GW,"(Månberger, 2018)",Variability in data,
+Solar CSP,CSP parabolic trough,Copper,3200.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP parabolic trough,Copper,3175.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Chromium,2190.0,t/GW,"(Månberger, 2018)",Important variability in data,
+Solar CSP,CSP parabolic trough,Chromium,4733.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP parabolic trough,Aluminum,285.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Zinc,1400.0,t/GW,(Watari et al. 2019),No comparison,
+Solar CSP,CSP tower,Vanadium,2.0,t/GW,(Watari et al. 2019),No comparison,
+Solar CSP,CSP tower,Silver,16.0,t/GW,"(Månberger, 2018)",No comparison,
+Solar CSP,CSP tower,Silver,16.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Silver,12.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Niobium,140.0,t/GW,(Watari et al. 2019),Variability in data,
+Solar CSP,CSP tower,Nickel,1800.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar CSP,CSP tower,Nickel,1800.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Nickel,1800.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Molybdenum,56.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Molybdenum,56.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Manganese,5700.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Manganese,5700.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Magnesium,2600.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Magnesium,2600.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Iron,393000.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Iron,384589.8,t/GW,(Watari et al. 2019),Small variability in data,Calculated from steel
+Solar CSP,CSP tower,Copper,1400.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar CSP,CSP tower,Copper,1400.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Copper,1400.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Chromium,3700.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar CSP,CSP tower,Aluminum,11000.0,t/GW,"(Pihl et al., 2012)",Small variability in data,
+Solar CSP,CSP tower,Aluminum,72967.0,t/GW,(Watari et al. 2019),Small variability in data,
+Solar PV,Aggregated,Aluminum,7288.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Aluminum,7520.0,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Solar PV,Aggregated,Concrete,60700.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,Aggregated,Copper,22.0,t/GW,"(Dong et al., 2025)",Important variability in data,
+Solar PV,Aggregated,Copper,3707.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Copper,4640.0,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Solar PV,Aggregated,Glass,46400.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,Aggregated,Glass,60014.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Iron,66446.94,t/GW,"(European Commission, 2020)",Small variability in data,Calculated from steel
+Solar PV,Aggregated,Iron,66466.512,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,Calculated from steel
+Solar PV,Aggregated,Nickel,1.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Polymers,8600.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,Aggregated,Polymers,7897.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Silicium,3948.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Silver,79.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,Aggregated,Zinc,30.0,t/GW,"(IRENA, 2016)",Small variability in data,
+Solar PV,a-Si,Concrete,60700.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,a-Si,Germanium ,48.0,t/GW,"(Dong et al., 2025)",Small variability in data,
+Solar PV,a-Si,Germanium ,48.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,a-Si,Glass,46400.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,a-Si,Iron,66446.94,t/GW,"(European Commission, 2020)",No comparison,Calculated from steel
+Solar PV,a-Si,Polymers,8600.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,a-Si,Silicium,150.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,a-SiGe,Copper,1005.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,a-SiGe,Indium,5.32,t/GW,"(Månberger, 2018)",No comparison,
+Solar PV,CdTe,Cadmium,50.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,CdTe,Cadmium,62.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,17; 62; 138
+Solar PV,CdTe,Cadmium,138.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,19; 70; 156
+Solar PV,CdTe,Cadmium,87.0,t/GW,(Watari et al. 2019),Small variability in data,2; 4; 9
+Solar PV,CdTe,Concrete,60700.0,t/GW,"(European Commission, 2020)",No comparison,7 ; 13 ; 28
+Solar PV,CdTe,Copper,5181.0,t/GW,"(Månberger, 2018)",Small variability in data,17; 41; 161
+Solar PV,CdTe,Copper,3091.0,t/GW,(Watari et al. 2019),Small variability in data,638; 2882; 6629
+Solar PV,CdTe,Glass,46400.0,t/GW,"(European Commission, 2020)",No comparison,"2741, 300, 250, 884, 825, 943"
+Solar PV,CdTe,Iron,66446.94,t/GW,"(European Commission, 2020)",No comparison,"336, 6, 5.53, 6.32, 72, 39"
+Solar PV,CdTe,Lead,8.0,t/GW,"(Fizaine et Court, 2015)",Variability in data,"1.1, 1.3, 1.3, 1"
+Solar PV,CdTe,Lead,8.0,t/GW,(Watari et al. 2019),Variability in data,"84, 10, 24, 19, 10, 29, 80, 35.6, 19, 36, 4, 47, 57, 17, 59, 68.17, 5…"
+Solar PV,CdTe,Molybdenum,109.0,t/GW,(Watari et al. 2019),Small variability in data,"6720, 3790"
+Solar PV,CdTe,Nickel,16.0,t/GW,(Watari et al. 2019),No comparison,Mean value taken from past studies
+Solar PV,CdTe,Polymers,8600.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,CdTe,Tellurium,52.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,CdTe,Tellurium,70.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,19; 70; 156
+Solar PV,CdTe,Tellurium,70.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,CdTe,Tellurium,15.2,t/GW,"(McNulty et al, 2022)",Important variability in data,
+Solar PV,CdTe,Tellurium,156.0,t/GW,"(Tokimatsu et al, 2017)",Variability in data,
+Solar PV,CdTe,Tellurium,92.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,CIGS,Concrete,60700.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,CIGS,Copper,22.0,t/GW,"(European Commission, 2020)",Variability in data,
+Solar PV,CIGS,Copper,450.0,t/GW,"(Månberger, 2018)",Variability in data,
+Solar PV,CIGS,Copper,233.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,CIGS,Gallium ,4.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,CIGS,Gallium ,4.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,2; 4; 9
+Solar PV,CIGS,Gallium ,4.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,CIGS,Gallium ,9.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Solar PV,CIGS,Gallium ,19.0,t/GW,(Watari et al. 2019),Variability in data,Mean value taken from past studies
+Solar PV,CIGS,Glass,46400.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,CIGS,Indium,15.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,CIGS,Indium,13.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,7 ; 13 ; 28
+Solar PV,CIGS,Indium,13.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,CIGS,Indium,28.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Solar PV,CIGS,Indium,31.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,CIGS,Iron,66446.94,t/GW,"(European Commission, 2020)",No comparison,Calculated from steel
+Solar PV,CIGS,Molybdenum,1.0,t/GW,(Watari et al. 2019),No comparison,Mean value taken from past studies
+Solar PV,CIGS,Polymers,8600.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,CIGS,Selenium,35.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,CIGS,Selenium,41.0,t/GW,"(Kavlak et al, 2015)",Variability in data,17; 41; 161
+Solar PV,CIGS,Selenium,41.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,CIGS,Selenium,161.0,t/GW,"(Tokimatsu et al, 2017)",Variability in data,
+Solar PV,CIGS,Selenium,61.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,c-Si,Aluminum,10953.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Solar PV,c-Si,Aluminum,31407.3,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,
+Solar PV,c-Si,Cadmium,0.3,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",No comparison,
+Solar PV,c-Si,Concrete,60700.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,c-Si,Silicium,2882.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,638; 2882; 6629
+Solar PV,c-Si,Copper,884.0,t/GW,"(Månberger, 2018)",Important variability in data,
+Solar PV,c-Si,Copper,458.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,c-Si,Copper,5952.19,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,
+Solar PV,c-Si,Gallium ,9.7,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",No comparison,
+Solar PV,c-Si,Glass,46400.0,t/GW,"(European Commission, 2020)",No comparison,
+Solar PV,c-Si,Iron,66446.94,t/GW,"(European Commission, 2020)",Small variability in data,Calculated from steel
+Solar PV,c-Si,Iron,90926.9,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,
+Solar PV,c-Si,Iron,65137.18176,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,Calculated from steel
+Solar PV,c-Si,Lead,6.0,t/GW,"(Fizaine et Court, 2015)",Variability in data,
+Solar PV,c-Si,Copper,990.5,t/GW,"(Liang et al., 2022)",Small variability in data,"2741, 300, 250, 884, 825, 943"
+Solar PV,c-Si,Lead,39.0,t/GW,(Watari et al. 2019),Variability in data,Mean value taken from past studies
+Solar PV,c-Si,Lead,72.0,t/GW,"(World Bank Group, 2017)",Variability in data,
+Solar PV,c-Si,Lead,550.28,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Important variability in data,
+Solar PV,c-Si,Lead,77.475,t/GW,"(Liang et al., 2022)",Variability in data,"336, 6, 5.53, 6.32, 72, 39"
+Solar PV,c-Si,Nickel,1.0,t/GW,(Watari et al. 2019),Variability in data,Mean value taken from past studies
+Solar PV,c-Si,Nickel,1043.48,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Important variability in data,
+Solar PV,c-Si,Polymers,8600.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,c-Si,Silicium,4000.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,c-Si,Nickel,1.175,t/GW,"(Liang et al., 2022)",Variability in data,"1.1, 1.3, 1.3, 1"
+Solar PV,c-Si,Silicium,6630.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Solar PV,c-Si,Silicium,6428.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,c-Si,Silver,20.0,t/GW,"(Dong et al., 2025)",Small variability in data,
+Solar PV,c-Si,Silver,20.0,t/GW,"(European Commission, 2020)",Small variability in data,
+Solar PV,c-Si,Silver,36.0,t/GW,"(Kavlak et al, 2015)",Small variability in data,"Max MI is the 2015 level, others are Low et medium"
+Solar PV,c-Si,Silver,25.19953947368421,t/GW,"(Liang et al., 2022)",Small variability in data,"84, 10, 24, 19, 10, 29, 80, 35.6, 19, 36, 4, 47, 57, 17, 59, 68.17, 5… Moyenne"
+Solar PV,c-Si,Silver,10.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Solar PV,c-Si,Silver,36.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Solar PV,c-Si,Silver,30.0,t/GW,(Watari et al. 2019),Small variability in data,Mean value taken from past studies
+Solar PV,c-Si,Silver,25.5,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,
+Solar PV,c-Si,Tin,577.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Solar PV,c-Si,Tin,10.0,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Variability in data,
+Solar PV,c-Si,Vanadium,0.011,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Variability in data,
+Solar PV,c-Si,Zinc,2523.04,t/GW,"OpenLCA  Analysis
+ 'Multi Si - 570 kWp' ",Small variability in data,
+Solar PV,Drameless CdTe (thin film),Aluminum,31300.0,t/GW,"(Bodeker et al, 2010 )",Small variability in data,
+Solar PV,Framed module,Aluminum,38500.0,t/GW,"(Bodeker et al, 2010 )",Small variability in data,
+Solar PV,PV Panel,Aluminum,2000.0,t/GW,"(Ashby, 2013)",Small variability in data,"For c-Si, CIGS et CdTe"
+Solar PV,PV Panel,Aluminum,1051.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe"
+Solar PV,PV Panel,Aluminum,102.0,t/GW,"(World Bank Group, 2017)",Variability in data,"For c-Si, CIGS et CdTe"
+Solar PV,PV Panel,Chromium,61.0,t/GW,(Watari et al. 2019),No comparison,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Panel,Tin,332.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Panel,Zinc,56.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Aluminum,20000.0,t/GW,"(Ashby, 2013)",Small variability in data,"For c-Si, CIGS et CdTe"
+Solar PV,PV Plant,Aluminum,33500.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe"
+Solar PV,PV Plant,Chromium,3700.0,t/GW,(Watari et al. 2019),No comparison,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Copper,3765.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Iron,1174320.0,t/GW,(Watari et al. 2019),Important variability in data,Calculated from steel ; Mean value taken from past studies
+Solar PV,PV Plant,Molybdenum,200.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Nickel,1800.0,t/GW,(Watari et al. 2019),Important variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Vanadium,2.0,t/GW,(Watari et al. 2019),Variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Solar PV,PV Plant,Zinc,1400.0,t/GW,(Watari et al. 2019),Small variability in data,"For c-Si, CIGS et CdTe ; Mean value taken from past studies"
+Vehicle battery,LFP,Aluminum,46.40007822418474,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, LFP, rechargeable)"
+Vehicle battery,LFP,Cobalt,1536.85058087675,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"(battery production, Li-ion, LFP, rechargeable)"
+Vehicle battery,LFP,Copper,493.2248344592003,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-LFP)
+Vehicle battery,LFP,Lithium,104.29174826530344,g/kWh,"(ecoinvent Association v3.11, 2024)",Small variability in data,"(battery production, Li-ion, LFP, rechargeable)"
+Vehicle battery,LFP,Lithium,510.8399423217781,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-LFP)
+Vehicle battery,LFP,Lithium,170.0,g/kWh,"(Junne et al., 2020)",Small variability in data,
+Vehicle battery,LFP,Lithium,111.25,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,LFP,Manganese,1492.4507879970258,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, LFP, rechargeable)"
+Vehicle battery,LFP,Nickel,140.0,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, LFP, rechargeable)"
+Vehicle battery,LMFP ,Copper,484.41738132276015,g/kWh,"(IRENA, 2024)",No comparison,(Gr-LMFP)
+Vehicle battery,LMFP ,Lithium,519.6475970479081,g/kWh,"(IRENA, 2024)",No comparison,(Gr-LMFP)
+Vehicle battery,LMFP ,Manganese,317.07315106442,g/kWh,"(IRENA, 2024)",No comparison,(Gr-LMFP)
+Vehicle battery,LMO,Cobalt,500.0,g/kWh,"(Junne et al., 2020)",Variability in data,
+Vehicle battery,LMO,Copper,440.3793092817998,g/kWh,"(IRENA, 2024)",No comparison,(Gr-LMO)
+Vehicle battery,LMO,Lithium,113.0,g/kWh,"(Junne et al., 2020)",Variability in data,
+Vehicle battery,LMO,Lithium,598.9160864036869,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-LMO)
+Vehicle battery,LMO,Manganese,1277.1002589838204,g/kWh,"(IRENA, 2024)",No comparison,(Gr-LMO)
+Vehicle battery,Na-ion,Manganese,554.878014362737,g/kWh,"(IRENA, 2024)",Variability in data,
+Vehicle battery,Na-ion,Nickel,334.688460516676,g/kWh,"(IRENA, 2024)",Small variability in data,
+Vehicle battery,Na-NiCl ,Aluminum,300.0,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,Na-NiCl ,Cobalt,160.0,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,Na-NiCl ,Copper,200.0,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,Na-NiCl ,Graphite,170.0,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,Na-NiCl ,Manganese,113.0,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,Na-NiCl ,Nickel,500.0,g/kWh,"(ecoinvent Association v3.11, 2024)",Small variability in data,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,NCA,Cobalt,920.7768173401034,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"battery production, Na-NiCl, rechargeable ; compared with Na-ion"
+Vehicle battery,NCA,Cobalt,105.69105035480008,g/kWh,"(IRENA, 2024)",Small variability in data,(Gr-NCA)
+Vehicle battery,NCA,Cobalt,200.0,g/kWh,"(Junne et al., 2020)",Small variability in data,
+Vehicle battery,NCA,Cobalt,143.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NCA,Copper,705.7681849053181,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, NCA, rechargeable)"
+Vehicle battery,NCA,Copper,264.22762588702,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NCA)
+Vehicle battery,NCA,Graphite,65.2555225805155,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NCA, rechargeable)"
+Vehicle battery,NCA,Lithium,21.58761633474207,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, NCA, rechargeable)"
+Vehicle battery,NCA,Lithium,572.493323814992,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NCA)
+Vehicle battery,NCA,Lithium,160.0,g/kWh,"(Junne et al., 2020)",Small variability in data,
+Vehicle battery,NCA,Lithium,198.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NCA,Manganese,59.41948687206784,g/kWh,"(ecoinvent Association v3.11, 2024)",Small variability in data,"(battery production, Li-ion, NCA, rechargeable)"
+Vehicle battery,NCA,Nickel,949.8003261059828,g/kWh,"(ecoinvent Association v3.11, 2024)",Small variability in data,"(battery production, Li-ion, NCA, rechargeable)"
+Vehicle battery,NCA,Nickel,704.6071367585,g/kWh,"(IRENA, 2024)",Small variability in data,(Gr-NCA)
+Vehicle battery,NCA,Nickel,720.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NCA85 ,Cobalt,105.8380503548,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA85)
+Vehicle battery,NCA85 ,Copper,264.22762588702,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA85)
+Vehicle battery,NCA85 ,Lithium,572.493323814992,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA85)
+Vehicle battery,NCA85 ,Nickel,673.8220883443179,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA85)
+Vehicle battery,NCA95 ,Cobalt,105.69105035480008,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA95)
+Vehicle battery,NCA95 ,Copper,264.22762588702,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA95)
+Vehicle battery,NCA95 ,Lithium,572.493323814992,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA95)
+Vehicle battery,NCA95 ,Nickel,735.0785633937359,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NCA95)
+Vehicle battery,NMC,Cobalt,300.0,g/kWh,"(Junne et al., 2020)",Small variability in data,
+Vehicle battery,NMC,Cobalt,132.1138129435102,g/kWh,"(IRENA, 2024)",Small variability in data,(Gr-NMC)
+Vehicle battery,NMC,Copper,317.07315106442,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC)
+Vehicle battery,NMC,Lithium,140.0,g/kWh,"(Junne et al., 2020)",Variability in data,
+Vehicle battery,NMC,Lithium,607.7237411298221,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NMC)
+Vehicle battery,NMC,Manganese,158.5365755322099,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC)
+Vehicle battery,NMC,Nickel,563.6856690888599,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC)
+Vehicle battery,NMC 111 ,Aluminum,58.42929936120943,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Cobalt,2041.7233596455158,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Cobalt,334.5549512355899,g/kWh,"(IRENA, 2024)",Important variability in data, (Gr-NMC(111))
+Vehicle battery,NMC 111 ,Copper,629.5271208191258,g/kWh,"(ecoinvent Association v3.11, 2024)",Small variability in data,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Copper,317.0731510644198,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(111))
+Vehicle battery,NMC 111 ,Graphite,62.88797677299026,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Lithium,115.5607086076522,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Lithium,654.973776252058,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(111))
+Vehicle battery,NMC 111 ,Manganese,746.935717215805,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Manganese,306.282806647448,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(111))
+Vehicle battery,NMC 111 ,Nickel,1771.43111843691,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"(battery, Li-ion, NMC111, rechargeable)"
+Vehicle battery,NMC 111 ,Nickel,339.2670292586441,g/kWh,"(IRENA, 2024)",Important variability in data, (Gr-NMC(111))
+Vehicle battery,NMC 333,Cobalt,394.0,g/kWh,"(Liang et al., 2023)",No comparison,
+Vehicle battery,NMC 333,Lithium,152.0,g/kWh,"(Liang et al., 2023)",No comparison,
+Vehicle battery,NMC 333,Manganese,370.0,g/kWh,"(Liang et al., 2023)",No comparison,
+Vehicle battery,NMC 333,Nickel,390.0,g/kWh,"(Liang et al., 2023)",No comparison,
+Vehicle battery,NMC 433,Cobalt,301.5706207743001,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC(433))
+Vehicle battery,NMC 433,Copper,317.0731510644198,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC(433))
+Vehicle battery,NMC 433,Lithium,631.413493986818,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC(433))
+Vehicle battery,NMC 433,Manganese,282.722524382208,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC(433))
+Vehicle battery,NMC 433,Nickel,400.523720008234,g/kWh,"(IRENA, 2024)",No comparison,(Gr-NMC(433))
+Vehicle battery,NMC 532,Aluminum,62.25290374153594,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Cobalt,212.0418932866599,g/kWh,"(IRENA, 2024)",Small variability in data,(Gr-NMC(532))
+Vehicle battery,NMC 532,Cobalt,230.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 532,Cobalt,2125.9766361881357,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Copper,317.0731510644198,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NMC(532))
+Vehicle battery,NMC 532,Copper,627.8745815297226,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Graphite,63.54614770195355,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Lithium,654.973776252058,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NMC(532))
+Vehicle battery,NMC 532,Lithium,150.0,g/kWh,"(Liang et al., 2023)",Variability in data,
+Vehicle battery,NMC 532,Lithium,402.0108775894284,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Manganese,193.19379689456505,g/kWh,"(IRENA, 2024)",Variability in data,(Gr-NMC(532))
+Vehicle battery,NMC 532,Manganese,360.0,g/kWh,"(Liang et al., 2023)",Variability in data,
+Vehicle battery,NMC 532,Manganese,785.5406745947355,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 532,Nickel,513.612514060947,g/kWh,"(IRENA, 2024)",Small variability in data,(Gr-NMC(532))
+Vehicle battery,NMC 532,Nickel,494.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 532,Nickel,1820.831209744819,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data,"(battery production, Li-ion, NMC532, rechargeable)"
+Vehicle battery,NMC 622,Cobalt,214.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 622,Cobalt,179.0575628253699,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(622))
+Vehicle battery,NMC 622,Copper,317.0731510644198,g/kWh,"(IRENA, 2024)",No comparison, (Gr-NMC(622))
+Vehicle battery,NMC 622,Lithium,136.8,g/kWh,"(Liang et al., 2023)",Variability in data,
+Vehicle battery,NMC 622,Lithium,560.732862891266,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(622))
+Vehicle battery,NMC 622,Manganese,200.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 622,Manganese,169.63351462932496,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(622))
+Vehicle battery,NMC 622,Nickel,620.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 622,Nickel,527.7488559802291,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(622))
+Vehicle battery,NMC 622 ,Aluminum,52.526904548917855,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Cobalt,1933.019246256886,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Copper,644.4955430133758,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Graphite,67.19069936776712,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Lithium,242.59202976302146,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Manganese,681.0348102069867,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 622 ,Nickel,2150.2929289080002,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison,"(battery production, Li-ion, NMC622, rechargeable)"
+Vehicle battery,NMC 811,Aluminum,85.70891842353707,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Cobalt,2657.450350391126,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Cobalt,84.81675731466987,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(811))
+Vehicle battery,NMC 811,Copper,638.5186366456763,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Copper,317.0731510644198,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(811))
+Vehicle battery,NMC 811,Graphite,73.71344117507692,g/kWh,"(ecoinvent Association v3.11, 2024)",No comparison," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Lithium,705.8095397493007,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Lithium,518.324484233935,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(811))
+Vehicle battery,NMC 811,Manganese,1049.8943202113705,g/kWh,"(ecoinvent Association v3.11, 2024)",Important variability in data," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Manganese,80.10478714168201,g/kWh,"(IRENA, 2024)",Small variability in data, (Gr-NMC(811))
+Vehicle battery,NMC 811,Nickel,1821.197085558824,g/kWh,"(ecoinvent Association v3.11, 2024)",Variability in data," (battery production, Li-ion, NMC811, rechargeable)"
+Vehicle battery,NMC 811,Nickel,654.9738841021331,g/kWh,"(IRENA, 2024)",Variability in data, (Gr-NMC(811))
+Vehicle battery,NMC 811/955,Cobalt,94.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 811/955,Lithium,124.60000000000001,g/kWh,"(Liang et al., 2023)",Variability in data,
+Vehicle battery,NMC 811/955,Manganese,90.0,g/kWh,"(Liang et al., 2023)",Small variability in data,
+Vehicle battery,NMC 811/955,Nickel,750.0,g/kWh,"(Liang et al., 2023)",Variability in data,
+Vehicle body,BEV,Aluminum,127302.0,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,BEV,Chromium,11850.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,BEV,Iron,902171.34,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,BEV,Lead,310.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,BEV,Zinc,100.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,ICEV,Aluminum,71300.0,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,ICEV,Iron,902171.34,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,ICEV,Lead,300.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,ICEV,Zinc,100.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,PHEV,Aluminum,110658.0,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,PHEV,Chromium,12789.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,PHEV,Iron,902171.34,g/vehicle,"(Watari et al., 2019; Fishman and al. 2018)",No comparison,
+Vehicle body,PHEV,Lead,320.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle body,PHEV,Zinc,100.0,g/vehicle,"(Watari et al., 2019)",No comparison,
+Vehicle motor,Ind,Copper,33673.5,g/vehicle,"(Månberger & Stenqvist, 2018)",No comparison,
+Vehicle motor,Ind,Copper,0.48105,kg/kW,"(Månberger & Stenqvist, 2018)",No comparison,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Copper,13884.5,g/vehicle,"(Månberger & Stenqvist, 2018)",No comparison,
+Vehicle motor,PM,Copper,0.19835,kg/kW,"(Månberger & Stenqvist, 2018)",No comparison,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Dysprosium,0.002,kg/kW,"(Junne et al., 2020)",Variability in data,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Dysprosium,5.16e-05,kg/kW,"(Månberger & Stenqvist, 2018)",Variability in data,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Dysprosium,83.0,g/vehicle,"(Watari et al., 2018)",Variability in data,
+Vehicle motor,PM,Neodymium,0.01,kg/kW,"(Junne et al., 2020)",Variability in data,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Neodymium,0.0038,kg/kW,"(Månberger & Stenqvist, 2018)",Small variability in data,Compared with other data by using an hypothesis of 70 kW per vehicle
+Vehicle motor,PM,Neodymium,695.0,g/vehicle,"(Watari et al., 2018)",Small variability in data,
+Vehicle motor,PM,Praesodymium,1.0,g/vehicle,"(Watari et al., 2018)",No comparison,
+Wind,DD-EESG,Aluminum,700.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Aluminum,500.0,t/GW,"(European Commission, 2020)",Variability in data,Mostly offshore
+Wind,DDSG,Aluminum,3651.0,t/GW,"(ADEME et Cycleco, 2015)",Variability in data,
+Wind,DFIG,Aluminum,3856.0,t/GW,"(ADEME et Cycleco, 2015)",Variability in data,
+Wind,Direct-drive,Aluminum,1311.857142857143,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Aluminum,1400.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Aluminum,1600.0,t/GW,"(European Commission, 2020)",Variability in data,Hybride
+Wind,Offshore,Aluminum,446.9,t/GW,"(Van Oorschot et al., 2022)",Variability in data,
+Wind,Offshore,Aluminum,2063.0,t/GW,(Watari et al. 2019),Variability in data,Mean value taken from past studies
+Wind,Onshore,Aluminum,371.70000000000005,t/GW,"(Van Oorschot et al., 2022)",Important variability in data,
+Wind,Onshore,Aluminum,1372.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore DD et AG,Aluminum,13200.0,t/GW,"(Garrett, P., et Rønde, K., 2011)",Important variability in data,
+Wind,Wind farm,Aluminum,4965.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,DD-PMSG,Boron,6.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Boron,6.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-PMSG,Boron,1.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Boron,7.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Boron,1.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,DD-EESG,Chromium,525.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Chromium,525.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Chromium,382.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Chromium,470.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Chromium,580.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Chromium,525.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,Chromium,372.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Chromium,470.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Chromium,683.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,DD-EESG,Concrete,369000.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Concrete,243000.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,DDSG,Concrete,818261.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,DFIG,Concrete,380000.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Concrete,355000.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Concrete,413000.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Onshore DD et AG,Concrete,365440.0,t/GW,"(Garrett, P., et Rønde, K., 2011)",Small variability in data,
+Wind,Wind farm,Concrete,487879.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,Aggregated,Copper,2000.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Wind,DD-EESG,Copper,5000.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Copper,3000.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Copper,5794.884615384615,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Copper,1400.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Copper,950.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Induction,Copper,4082.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,Offshore,Copper,8000.0,t/GW,"(IEA, 2022)",Important variability in data,
+Wind,Offshore,Copper,2681.4,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Wind,Offshore,Copper,9371.0,t/GW,(Watari et al. 2019),Important variability in data,
+Wind,Onshore,Copper,2900.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Copper,3840.9000000000005,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,
+Wind,Onshore,Copper,2497.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore DD et AG,Copper,3320.0,t/GW,"(Garrett, P., et Rønde, K., 2011)",Small variability in data,
+Wind,PM,Copper,4700.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,Aggregated,Dysprosium,33.0,t/GW,"(Tokimatsu et al, 2017)",Important variability in data,
+Wind,DD-EESG,Dysprosium,6.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Dysprosium,17.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,GB-DFIG (et SCIG),Dysprosium,2.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Dysprosium,6.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Dysprosium,16.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore DD,Dysprosium,12.0,t/GW,"(U.S. Department of Energy., 2011)",Small variability in data,
+Wind,PM,Dysprosium,13.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,DD-EESG,Glass/ carbon composites,8100.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Glass/ carbon composites,8100.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,DDSG,Glass/ carbon composites,7549.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,DFIG,Glass/ carbon composites,4013.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Glass/ carbon composites,7700.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Glass/ carbon composites,8400.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Onshore DD et AG,Glass/ carbon composites,9580.0,t/GW,"(Garrett, P., et Rønde, K., 2011)",Small variability in data,
+Wind,Wind farm,Glass/ carbon composites,10255.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,Aggregated,Iron,140000.0,t/GW,"(Tokimatsu et al, 2017)",Important variability in data,
+Wind,DD-EESG,Iron,20100.0,t/GW,"(European Commission, 2020)",Variability in data,Mostly onshore
+Wind,DD-EESG,Iron,129175.2,t/GW,"(European Commission, 2020)",Variability in data,Mostly onshore ; Calculated from steel
+Wind,DD-PMSG,Iron,20100.0,t/GW,"(European Commission, 2020)",Variability in data,Mostly offshore
+Wind,DD-PMSG,Iron,116942.7,t/GW,"(European Commission, 2020)",Variability in data,Mostly offshore ; Calculated from steel
+Wind,DDSG,Iron,138973.0,t/GW,"(ADEME et Cycleco, 2015)",Variability in data,
+Wind,DFIG,Iron,91897.0,t/GW,"(ADEME et Cycleco, 2015)",Variability in data,
+Wind,Direct-drive,Iron,104480.229,t/GW,"(Liang et al., 2022)",Variability in data,Calculated from steel
+Wind,GB-DFIG (et SCIG),Iron,18000.0,t/GW,"(European Commission, 2020)",Variability in data,Mostly Onshore
+Wind,GB-DFIG (et SCIG),Iron,110581.8,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore ; Calculated from steel
+Wind,GB-PMSG,Iron,20800.0,t/GW,"(European Commission, 2020)",Variability in data,Hybride
+Wind,GB-PMSG,Iron,104710.2,t/GW,"(European Commission, 2020)",Variability in data,Hybride ; Calculated from steel
+Wind,Offshore,Iron,434274.98561999993,t/GW,"(Van Oorschot et al., 2022)",Important variability in data,Calculated from steel
+Wind,Offshore,Iron,326363.1,t/GW,(Watari et al. 2019),Important variability in data,Calculated from steel
+Wind,Onshore,Iron,118459.82358000001,t/GW,"(Van Oorschot et al., 2022)",Small variability in data,Calculated from steel
+Wind,Onshore,Iron,117417.321,t/GW,(Watari et al. 2019),Small variability in data,Calculated from steel
+Wind,Onshore DD et AG,Iron,122780.0,t/GW,"(Garrett, P., et Rønde, K., 2011)",Small variability in data,
+Wind,Offshore,Lead,5255.0,t/GW,"(Liang et al., 2022)",Small variability in data,"6720, 3790"
+Wind,DD-EESG,Manganese,790.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Manganese,790.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,GB-DFIG (et SCIG),Manganese,780.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Manganese,800.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Manganese,790.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,Manganese,57.0,t/GW,(Watari et al. 2019),Important variability in data,
+Wind,Onshore,Manganese,780.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Manganese,57.0,t/GW,(Watari et al. 2019),Important variability in data,
+Wind,DD-EESG,Molybdenum,109.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Molybdenum,109.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,GB-DFIG (et SCIG),Molybdenum,99.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Molybdenum,119.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Molybdenum,109.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,Molybdenum,335.0,t/GW,(Watari et al. 2019),Important variability in data,
+Wind,Onshore,Molybdenum,99.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Molybdenum,335.0,t/GW,(Watari et al. 2019),Important variability in data,
+Wind,Aggregated,Neodymium,186.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Wind,DD-EESG,Neodymium,28.0,t/GW,"(European Commission, 2020)",No comparison,Mostly onshore
+Wind,DD-PMSG,Neodymium,180.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Neodymium,169.16666666666666,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Neodymium,12.0,t/GW,"(European Commission, 2020)",No comparison,Mostly Onshore
+Wind,GB-PMSG,Neodymium,51.0,t/GW,"(European Commission, 2020)",No comparison,Hybride
+Wind,Offshore,Neodymium,148.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore DD,Neodymium,186.0,t/GW,"(U.S. Department of Energy., 2011)",Small variability in data,
+Wind,PM,Neodymium,200.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,DD-EESG,Nickel,340.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Nickel,240.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Nickel,200.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Nickel,430.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Nickel,440.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Induction,Nickel,377.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,Offshore,Nickel,240.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,Nickel,427.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Nickel,403.5,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Nickel,427.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,PM,Nickel,377.0,t/GW,"(Månberger, 2018)",Small variability in data,
+Wind,DD-EESG,Polymers,4600.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Polymers,4600.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,DFIG,Polymers,233.0,t/GW,"(ADEME et Cycleco, 2015)",Variability in data,
+Wind,GB-DFIG (et SCIG),Polymers,4600.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Polymers,4600.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Wind farm,Polymers,1818.0,t/GW,"(ADEME et Cycleco, 2015)",Small variability in data,
+Wind,DD-EESG,Praesodymium,9.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Praesodymium,35.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Praesodymium,32.666666666666664,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-PMSG,Praesodymium,4.0,t/GW,"(European Commission, 2020)",No comparison,Hybride
+Wind,Offshore,Praesodymium,33.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Praesodymium,3.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Aggregated,REE,219.0,t/GW,"(Tokimatsu et al, 2017)",Small variability in data,
+Wind,DD-EESG,REE,44.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,REE,239.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,GB-DFIG (et SCIG),REE,14.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,REE,62.0,t/GW,"(European Commission, 2020)",No comparison,Hybride
+Wind,Offshore,REE,99.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,REE,204.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,REE,99.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,REE,4.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,DD-EESG,Terbium,1.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Terbium,7.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Terbium,8.5,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-PMSG,Terbium,1.0,t/GW,"(European Commission, 2020)",No comparison,Hybride
+Wind,Offshore,Terbium,7.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Terbium,1.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Offshore,Vanadium,7000.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,Offshore,Vanadium,7000.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Vanadium,90.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,Onshore,Vanadium,90.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Direct-drive,Yttrium,1.2,t/GW,"(Liang et al., 2022)",No comparison,
+Wind,DD-EESG,Zinc,5500.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly onshore
+Wind,DD-PMSG,Zinc,5500.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly offshore
+Wind,Direct-drive,Zinc,5500.0,t/GW,"(Liang et al., 2022)",Small variability in data,
+Wind,GB-DFIG (et SCIG),Zinc,5500.0,t/GW,"(European Commission, 2020)",Small variability in data,Mostly Onshore
+Wind,GB-PMSG,Zinc,5500.0,t/GW,"(European Commission, 2020)",Small variability in data,Hybride
+Wind,Offshore,Zinc,5500.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Offshore,Zinc,5450.0,t/GW,(Watari et al. 2019),Small variability in data,
+Wind,Onshore,Zinc,5500.0,t/GW,"(IEA, 2022)",Small variability in data,
+Wind,Onshore,Zinc,5450.0,t/GW,(Watari et al. 2019),Small variability in data,

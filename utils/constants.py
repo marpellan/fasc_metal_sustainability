@@ -2,7 +2,62 @@
 
 
 
+### Quebec vehicles ###
+TYP_CARBU = {
+    "A": "Autre",
+    "C": "Hydrogène",
+    "D": "Diésel",
+    "E": "Essence",
+    "H": "Hybride",
+    "L": "Électricité",
+    "M": "Méthanol",
+    "N": "Gaz naturel",
+    "P": "Propane",
+    "S": "Non-propulsé",
+    "T": "Éthanol",
+    "W": "Hybride branchable",
+    "blanc": "Non précisé",
+}
 
+CLAS = {
+    # Utilisation : Promenade
+    "PAU": "Automobile ou camion léger (promenade)",
+    "PMC": "Motocyclette (promenade)",
+    "PCY": "Cyclomoteur (promenade)",
+    "PHM": "Habitation motorisée (promenade)",
+
+    # Utilisation : Institutionnelle, professionnelle ou commerciale
+    "CAU": "Automobile ou camion léger (usage commercial)",
+    "CMC": "Motocyclette (usage commercial)",
+    "CCY": "Cyclomoteur (usage commercial)",
+    "CHM": "Habitation motorisée (usage commercial)",
+    "TTA": "Taxi",
+    "TAB": "Autobus (transport public/interurbain)",
+    "TAS": "Autobus scolaire",
+    "BCA": "Camion ou tracteur routier (>3000 kg, transport de biens)",
+    "CVO": "Véhicule-outil (travaux ou déneigement)",
+    "COT": "Autres (dépanneuse, ambulance, corbillard, école de conduite, plaque amovible, etc.)",
+
+    # Utilisation : Circulation restreinte
+    "RAU": "Automobile ou camion léger (circulation restreinte)",
+    "RMC": "Motocyclette (avant 1980, restaurée ou conservée)",
+    "RCY": "Cyclomoteur (circulation restreinte)",
+    "RHM": "Habitation motorisée (circulation restreinte)",
+    "RAB": "Autobus (circulation restreinte)",
+    "RCA": "Camion ou tracteur routier (circulation restreinte)",
+    "RMN": "Motoneige (circulation restreinte)",
+    "ROT": "Autres (circulation restreinte)",
+
+    # Utilisation : Hors réseau
+    "HAU": "Automobile ou camion léger (hors réseau)",
+    "HCY": "Cyclomoteur (hors réseau)",
+    "HAB": "Autobus (hors réseau)",
+    "HCA": "Camion ou tracteur routier (hors réseau)",
+    "HMN": "Motoneige (hors réseau)",
+    "HVT": "Véhicule tout-terrain (motoquad, autoquad, etc.)",
+    "HVO": "Véhicule-outil (hors réseau)",
+    "HOT": "Autres (hors réseau)",
+}
 
 
 
@@ -90,4 +145,54 @@ agg_mapping_hh = {
  'Particulate matter formation': 'Particulate matter',
  'Photochemical ozone HH': 'Photochemical ozone formation',
  'Water availability HH': 'Water availability'
+}
+
+
+
+metal_colors = {
+    "Aluminum":      "#e66101",
+    "Boron":         "#fdb863",
+    "Chromium":      "#b2abd2",
+    "Cobalt":        "#5e3c99",
+    "Concrete":      "#999999",
+    "Copper":        "#d95f02",
+    "Dysprosium":    "#2166ac",
+    "Gallium":       "#92c5de",
+    "Glass":         "#bababa",
+    "Iron":          "#7f3b08",
+    "Lead":          "#542788",
+    "Magnesium":     "#a6dba0",
+    "Manganese":     "#de77ae",
+    "Molybdenum":    "#8c510a",
+    "Neodymium":     "#762a83",
+    "Nickel":        "#1b7837",
+    "Niobium":       "#80cdc1",
+    "Polymers":      "#dfc27d",
+    "Praesodymium":  "#af8dc3",
+    "REE":           "#bf812d",
+    "Silicium":      "#c2a5cf",
+    "Silver":        "#cccccc",
+    "Terbium":       "#35978f",
+    "Vanadium":      "#9970ab",
+    "Zinc":          "#f4a582",
+    "Other":         "#999999"
+}
+
+tech_colors = {
+    "Hydro": "#f6e8c3",
+    "Solar (Distributed)": "#8c510a",
+    "Solar (Utility scale)": "#d8b365",
+    "Offshore Wind": "#c7eae5",
+    "Onshore Wind": "#5ab4ac",
+    "Bioenergy": "#01665e",
+    "Bioenergy with CCUS": "#003c30",
+    "Natural Gas": "#dfc27d",
+    "Natural Gas with CCUS": "#a6611a",
+    "Coal": "#878787",
+    "Coal with CCUS": "#4d4d4d",
+    "Hydrogen": "#80cdc1",
+    "Oil": "#b8b8b8",
+    "Uranium": "#fee08b",
+    "Uranium SMR": "#d73027",
+    "Other": "#999999"
 }
