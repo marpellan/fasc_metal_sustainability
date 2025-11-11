@@ -334,7 +334,7 @@ def calculate_metal_demand_ev_battery(ev_df, mi_df, mapping_dict):
 
     # --- Compute metal demand (convert g/kWh → tonnes) ---
     merged["Metal_demand_t"] = (
-        merged["Installed_battery_cap"] * merged["Metal intensity (g/kWh)"] / 1e6
+        merged["Installed_battery_cap"] * merged["Metal intensity (g/kWh)"] / 1000000
     )
 
     # --- Final column ordering ---
@@ -408,7 +408,7 @@ def calculate_metal_demand_ev_body(ev_sales_df, mi_df, mapping_dict, main_var="S
             "Technology": str(tech),
             "Sub-technology": str(subtech),
             "Metal": metal,
-            "Metal intensity (kg/vehicle)": avg_intensity,
+            "Metal intensity (g/vehicle)": avg_intensity,
             "Fiability_used": best_group.iloc[0]["Fiability of the data"],
             "Comment": comment
         })
@@ -435,12 +435,12 @@ def calculate_metal_demand_ev_body(ev_sales_df, mi_df, mapping_dict, main_var="S
     merged = merged.merge(mi_clean, on=["Technology", "Sub-technology"], how="left")
 
     # --- Compute metal demand ---
-    merged["Metal_demand_t"] = merged[main_var] * merged['Mass_vehicule'] * merged["Metal intensity (kg/vehicle)"] / 1000
+    merged["Metal_demand_t"] = merged[main_var] * merged['Mass_vehicule'] * merged["Metal intensity (g/vehicle)"] / 1000000
 
     # --- Column order ---
     cols = list(ev_sales_df.columns) + [
         "Technology", "Sub-technology", "Metal",
-        "Metal intensity (kg/vehicle)", "Metal_demand_t",
+        "Metal intensity (g/vehicle)", "Metal_demand_t",
         "Fiability_used", "Comment"
     ]
     merged = merged[cols]
