@@ -1,0 +1,126 @@
+﻿"Cube Title","Product Id","CANSIM Id",URL,"Cube Notes","Archive Status",Frequency,"Start Reference Period","End Reference Period","Total number of dimensions"
+"Activities of multinational enterprises in Canada, Canadian and foreign multinationals, by sector and industry","36100604",,"https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610060401",14;19,"CURRENT - a cube available to the public and that is current","Annual","2010-01-01","2023-01-01","4",
+
+"Dimension ID","Dimension name","Dimension Notes","Dimension Definitions"
+"1","Geography",,""
+"2","Sector and type of multinational",,""
+"3","North American Industry Classification System",,""
+"4","Descriptive variable",12,""
+
+"Dimension ID","Member Name","Classification Code","Member ID","Parent Member ID",Terminated,"Member Notes","Member Definitions"
+"1","Canada","[11124]","1","","",,
+"2","Corporate sector","","2","1","",,
+"2","Non-corporate sector","","6","1","",,
+"2","Foreign multinational enterprises","","3","2","",,
+"2","Canadian multinational enterprises","","4","2","",,
+"2","Non-multinational enterprises","","5","2","",,
+"2","Total Canadian economy","","1","","",,
+"3","Agriculture, Forestry, Fishing and Hunting","[11]","2","1","",,
+"3","Mining, Quarrying, and Oil and Gas Extraction","[21]","3","1","",,
+"3","Utilities","[22]","7","1","",,
+"3","Construction","[23]","8","1","",,
+"3","Manufacturing","[31-33]","9","1","",,
+"3","Wholesale Trade","[41]","31","1","",,
+"3","Retail Trade","[44-45]","32","1","",,
+"3","Transportation and Warehousing","[48-49]","33","1","",,
+"3","Information and Cultural Industries","[51]","34","1","",,
+"3","Finance and Insurance","[52]","35","1","",,
+"3","Real Estate and Rental and Leasing","[53]","36","1","",,
+"3","Professional, Scientific and Technical Services","[54]","37","1","",,
+"3","Management of Companies and Enterprises","[55]","38","1","",5,
+"3","Administrative and Support, Waste Management and Remediation Services","[56]","39","1","",,
+"3","Educational Services","[61]","40","1","",,
+"3","Health Care and Social Assistance","[62]","41","1","",,
+"3","Arts, Entertainment and Recreation","[71]","42","1","",,
+"3","Accommodation and Food Services","[72]","43","1","",,
+"3","Other Services (except Public Administration)","[81]","44","1","",,
+"3","Public Administration","[91]","45","1","",,
+"3","Oil and Gas Extraction","[211]","4","3","",,
+"3","Mining and Quarrying (except Oil and Gas)","[212]","5","3","",,
+"3","Support Activities for Mining, and Oil and Gas Extraction","[213]","6","3","",,
+"3","Food Manufacturing","[311]","10","9","",,
+"3","Beverage and Tobacco Product Manufacturing","[312]","11","9","",,
+"3","Textile Mills","[313]","12","9","",,
+"3","Textile Product Mills","[314]","13","9","",,
+"3","Apparel Manufacturing","[315]","14","9","",,
+"3","Leather and Allied Product Manufacturing","[316]","15","9","",,
+"3","Wood Product Manufacturing","[321]","16","9","",,
+"3","Paper Manufacturing","[322]","17","9","",,
+"3","Printing and Related Support Activities","[323]","18","9","",,
+"3","Petroleum and Coal Product Manufacturing","[324]","19","9","",,
+"3","Chemical Manufacturing","[325]","20","9","",,
+"3","Plastics and Rubber Products Manufacturing","[326]","21","9","",,
+"3","Non-Metallic Mineral Product Manufacturing","[327]","22","9","",,
+"3","Primary Metal Manufacturing","[331]","23","9","",,
+"3","Fabricated Metal Product Manufacturing","[332]","24","9","",,
+"3","Machinery Manufacturing","[333]","25","9","",,
+"3","Computer and Electronic Product Manufacturing","[334]","26","9","",,
+"3","Electrical Equipment, Appliance and Component Manufacturing","[335]","27","9","",,
+"3","Transportation Equipment Manufacturing","[336]","28","9","",,
+"3","Furniture and Related Product Manufacturing","[337]","29","9","",,
+"3","Miscellaneous Manufacturing","[339]","30","9","",,
+"3","All industries","","1","","",,
+"4","Non-residential construction","","18","17","",13,
+"4","Machinery and equipment","","19","17","",13,
+"4","Intellectual property","","20","17","",13,
+"4","Total assets","","1","","",1;13,
+"4","Total liabilities","","2","","",1;13,
+"4","Shareholder's equity","","3","","",1;13,
+"4","Operating revenues","","4","","",1;13,
+"4","Operating expenses","","5","","",1;13,
+"4","Operating profit or loss","","6","","",1;13,
+"4","Gross domestic product at basic prices (value added)","","7","","",10;13,
+"4","Total number of jobs","","8","","",11,
+"4","Merchandise imports","","9","","",2,
+"4","Commercial services imports","","10","","",4;20,
+"4","Merchandise exports","","11","","",3,
+"4","Commercial services exports","","12","","",4;20,
+"4","Intramural research and development expenditures","","13","","",6;13;15,
+"4","Research and development personnel","","14","","",7;13;15,
+"4","International technological receipts","","15","","",4;8;20,
+"4","International technological payments","","16","","",4;8;20,
+"4","Gross fixed capital formation","","17","","",13;16,
+
+Symbol Legend
+Description,Symbol
+"not available for a specific reference period","..",
+"less than the limit of detection","<LOD",
+"value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded","0s",
+"data quality: excellent","A",
+"data quality: very good","B",
+"data quality: good","C",
+"data quality: acceptable","D",
+"use with caution","E",
+"too unreliable to be published","F",
+"not applicable","...",
+"preliminary","p",
+"revised","r",
+"suppressed to meet the confidentiality requirements of the Statistics Act","x",
+"terminated","t",
+
+"Survey Code","Survey Name"
+"5230","Activities of Foreign Majority-Owned Affiliates in Canada"
+
+"Subject Code","Subject Name"
+"36","Economic accounts"
+
+"Note ID",Note
+1,"For additional information and definitions related to the financial performance variables, refer to <a href="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2510" rel="external noopener noreferrer" target="_blank">Financial and Taxation Statistics for Enterprises (opens new window)</a>."
+2,"For additional information and definitions related to merchandise imports, refer to <a href="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=5237" rel="external noopener noreferrer" target="_blank">Trade by Importer Characteristics - Goods (TIC) program (opens new window)</a>."
+3,"For additional information and definitions related to merchandise domestic exports, refer to <a href="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=5124" rel="external noopener noreferrer" target="_blank">Trade by Exporter Characteristics - Goods (TEC) program (opens new window)</a>."
+4,"For additional information and definitions related to trade in commercial services, refer to <a href="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=1536" rel="external noopener noreferrer" target="_blank">Canada's International Transactions in Services survey (opens new window)</a>."
+5,"Some of the corporations in the Management of companies and enterprises sector (55) are not in a consolidated corporate structure, which can lead to double counting of certain financial balance sheet measures of affiliates operations, e.g. assets, liabilities and equity."
+6,"Intramural, or "In-house research and development" (In-house R&D), refers to expenditures made within Canada for R&D performed on-site or within an organization's establishment. For additional information and definitions refer to <a href="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&lang=en&db=imdb&adm=8&dis=2&SDDS=4201" rel="external noopener noreferrer" target="_blank">Annual Survey of Research and Development in Canadian Industry (RDCI) (opens new window)</a>."
+7,"Personnel is measured in full-time equivalent (FTE). Full-time equivalent or a person-year is equal to number of persons who work solely on research and development projects and an estimate of time of persons working only part of their time on research and development. For additional information and definitions refer to <a href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=4201" rel="external noopener noreferrer" target="_blank">Annual Survey of Research and Development in Canadian Industry (RDCI) (opens new window)</a>."
+8,"These concern payments and receipts made by enterprises in respect of foreign purchases of patents (sale or licensing) and unpatented inventions, know-how, trademarks, designs and patterns, technical services, industrial R&D carried out abroad, and foreign sources of funds for intramural R&D projects."
+10,"Canada's total gross domestic product (GDP) at basic prices, also known as "value added," was derived from table <a href="http://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610022101" rel="external noopener noreferrer" target="_blank">36-10-0221-01 (opens new window)</a>. It is the sum of all goods and services produced in Canada less intermediate consumption plus taxes less subsidies. At the establishment level, it is calculated using an income-based approach, summing compensation of employees, gross operating surplus, and indirect taxes less subsidies on production and it is then benchmarked to the supply and use program (table <a href="http://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610047801" rel="external noopener noreferrer" target="_blank">36-10-0478-01 (opens new window)</a>) For the most recent reference year, data was estimated based on all the information available at the time of the release."
+11,"The estimate of the total number of jobs covers two main categories: employee jobs and self-employed jobs. For additional information and definitions related to the total number of jobs, refer to <a href ="http://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=5103" rel="external noopener noreferrer" target="_blank">Labour Productivity Measures - Provinces and Territories (Annual) (CPA) (opens new window)</a>."
+12,"Figures may not add up due to rounding."
+13,"The universe used in the compilation of financial variables (except partnerships), value added, research and development, and gross fixed capital formation covers all the enterprises in the corporate sector. Beginning in reference year 2019, the financial variables do not include federal and provincial government business enterprises."
+14,"This table replaces archived table 36-10-0447-01."
+15,"Data on intramural (in-house) research and development (R&D) expenditures and R&D personnel are only available after 2014 because the Research and Development in Canadian Industry (RDCI) survey was redesigned for reference year 2014. For data on prior years, please consult the archived table 36-10-0447-01."
+16,"Gross fixed capital formation is disaggregated by multinational status using microdata from multiple programs. Machinery and equipment, non-residential construction, and software (a component of intellectual property) use capital expenditure data from the Annual Capital Expenditure Survey (<a href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2803" rel="external noopener noreferrer" target="_blank">record number 2803 (opens new window)</a>), R&D spending (the other component of intellectual property) leverages information from Annual Survey of Research and Development in Canadian Industry <a href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=4201" rel="external noopener noreferrer" target="_blank">record number 4201 (opens new window)</a>. Linkage and benchmarking are done to the business sector. Data is then published at the corporate sector level. Excluded are unincorporated businesses and capital formation related to residential construction. For the most recent two years of data, the microdata is benchmarked for each component on a provincial basis to the Gross Domestic Product, Expenditure Based tables (<a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610022201" rel="external noopener noreferrer" target="_blank">table 36-10-0222-01 (opens new window)</a>). The industry breakdown is estimated based on historical trends. Data older than two years are benchmarked on an industry and provincial basis to the values produced in the Supply and Use Tables (<a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610047801" rel="external noopener noreferrer" target="_blank">table 36-10-0478-01 (opens new window)</a>)."
+19,"Data on the Activities of Multinational Enterprises in Canada for 2023 are preliminary. Select activities, including: number of jobs, merchandise trade and gross fixed capital formation are available for this reference year."
+20,"Quality improvements in assigning characteristics to a universe of enterprises engaged in trade in services exports and imports have been undertaken since reference year 2019. As a result, comparisons between 2019 and prior years should be done with caution."
+
+"Correction ID","Correction Date","Correction Note"
