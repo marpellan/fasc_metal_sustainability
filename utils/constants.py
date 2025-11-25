@@ -196,3 +196,12 @@ tech_colors = {
     "Uranium SMR": "#d73027",
     "Other": "#999999"
 }
+
+selected_metal_colors = {
+    'Copper': '#8c510a',
+    'Nickel': '#d8b365',
+    'Graphite': '#f6e8c3',
+    'Cobalt': '#c7eae5',
+    'Lithium': '#5ab4ac',
+    'Neodymium': '#01665e'
+}

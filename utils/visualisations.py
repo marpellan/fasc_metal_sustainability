@@ -524,3 +524,102 @@ def plot_metal_scenarios_panels(df, color_map,
         print(f"✅ Saved to {savepath}.png and .svg")
 
     #plt.show()
+
+
+# ======================================================
+# LCA results
+# ======================================================
+def plot_lca_stackplots_by_scenario(
+    df,
+    scenario,
+    impact_cols,
+    color_map=None,
+    group_small_metals=True,
+    threshold=0.01,
+    figsize=(10, 7),
+    dpi=300,
+    log_scale=False,              # NEW
+    years=[2025, 2030, 2035, 2040],   # NEW
+    savepath=None,
+):
+    """
+    Stacked ACV results by metal and year for a given scenario.
+    """
+
+    # --- Filter scenario ---
+    d0 = df[df["Scenario"] == scenario].copy()
+    if d0.empty:
+        raise ValueError(f"❌ No rows for scenario = {scenario}")
+
+    # --- Clean year and filter the required values ---
+    d0["Year"] = d0["Year"].astype(int)
+    d0 = d0[d0["Year"].isin(years)]
+    d0 = d0.sort_values("Year")
+
+    metals = sorted(d0["Metal"].unique())
+
+    # --- Colors ---
+    if color_map:
+        for m in metals:
+            if m not in color_map:
+                color_map[m] = "#" + ''.join(np.random.choice(list('0123456789ABCDEF'), 6))
+    else:
+        # auto colors
+        def pastel(n):
+            hsv = [(i/n, 0.45 + 0.2*np.random.rand(), 0.9) for i in range(n)]
+            return [mcolors.to_hex(mcolors.hsv_to_rgb(h)) for h in hsv]
+        colors = pastel(len(metals))
+        color_map = dict(zip(metals, colors))
+
+    # --- Figure ---
+    fig, axes = plt.subplots(len(impact_cols), 1, figsize=figsize, dpi=dpi, sharex=True)
+    if len(impact_cols) == 1:
+        axes = [axes]
+
+    for ax, impact in zip(axes, impact_cols):
+
+        pivot = d0.pivot_table(
+            index="Year",
+            columns="Metal",
+            values=impact,
+            aggfunc="sum",
+            fill_value=0
+        )
+
+        # --- Optional grouping ---
+        if group_small_metals:
+            total_all = pivot.sum().sum()
+            share = pivot.sum() / total_all
+            small = share[share < threshold].index
+
+            if len(small) > 0:
+                pivot["Other"] = pivot[small].sum(axis=1)
+                pivot = pivot.drop(columns=small)
+                color_map["Other"] = "#999999"
+
+        # --- Colors order ---
+        colors = [color_map[m] for m in pivot.columns]
+
+        # --- Stack plot ---
+        ax.stackplot(pivot.index, pivot.T, labels=pivot.columns, colors=colors)
+
+        # Apply log scale if requested
+        if log_scale:
+            ax.set_yscale("log")
+
+        ax.set_ylabel(impact, fontsize=12)
+        ax.set_title(f"{impact} – {scenario}", fontsize=13, fontweight="bold")
+        ax.legend(loc="upper left", ncol=3, fontsize=11, frameon=False)
+
+    # --- Clean x-axis with fixed tick labels ---
+    axes[-1].set_xticks(years)
+    axes[-1].set_xticklabels([str(y) for y in years], fontsize=11)
+    axes[-1].set_xlabel("", fontsize=12)
+
+    fig.tight_layout()
+
+    if savepath:
+        fig.savefig(savepath + ".png", bbox_inches="tight")
+        fig.savefig(savepath + ".svg", bbox_inches="tight")
+
+    #return fig

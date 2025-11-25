@@ -1,11 +1,9 @@
-import pandas as pd
-import brightway2 as bw
-import bw2analyzer as ba
-import bw2calc as bc
-import bw2data as bd
-import bw2io as bi
 import brightway2 as bw
 import pandas as pd
+from brightway2 import Database
+from brightway2 import LCA
+import numpy as np
+
 
 # ======================================================
 # LCA stuff
@@ -222,81 +220,99 @@ def first_tier_contributions(activity, commodity_label, method_id,
     return df.sort_values("Share_%", ascending=False).reset_index(drop=True)
 
 
-def setup_activities_dict(df, scenario_prefix):
+def setup_activities(lci_df):
     """
-    Create a dictionary mapping (scenario, year, metal, technology) to Brightway activities.
+    Map (Scenario, Year, Metal) -> Brightway activity based on:
+        DB_to_map, Activity, Reference Product, Location
     """
-    activities_dict = {}
-    years = ["2022", "2030", "2035", "2040", "2045", "2050"]
 
-    for index, row in df.iterrows():
+    activities_dict = {}
+
+    for idx, row in lci_df.iterrows():
+        scenario = row["Scenario"]
+        year = str(row["Year"])
         metal = row["Metal"]
-        market = row["Market"]
-        product = row["Reference Product"]
+
+        db_name = row["DB_to_map"]
+        act_name = row["Activity"]
+        ref_product = row["Reference Product"]
         location = row["Location"]
 
-        for year in years:
-            database_name = f"{scenario_prefix}_{year} regionalized"  # Select the appropriate database
-            activity_name = (scenario_prefix, year, metal, row["Technology"])
-            search_criteria = market
+        key = (scenario, year, metal)
 
-            try:
-                activities = Database(database_name).search(search_criteria, limit=1000)
-                filtered_activities = [
-                    i for i in activities if i["name"] == search_criteria
-                                             and i["location"] == location
-                                             and i["reference product"] == product
-                ]
+        try:
+            db = Database(db_name)
 
-                if filtered_activities:
-                    activities_dict[activity_name] = filtered_activities[0]
-                else:
-                    activities_dict[activity_name] = None
-            except:
-                activities_dict[activity_name] = None
+            # --- 1) Match exact name ---
+            candidates = [
+                act for act in db
+                if act["name"] == act_name
+            ]
+
+            # --- 2) Match reference product ---
+            candidates = [
+                act for act in candidates
+                if act.get("reference product", None) == ref_product
+            ]
+
+            # --- 3) Match location ---
+            candidates = [
+                act for act in candidates
+                if act.get("location", None) == location
+            ]
+
+            activities_dict[key] = candidates[0] if candidates else None
+
+        except Exception:
+            activities_dict[key] = None
 
     return activities_dict
 
 
-def calculate_lca_optimized(df, activities_dict, scenario_prefix, lcia_methods):
+def run_scenario_lca(df_demand_agg, activities_dict, lcia_methods):
     """
-    Optimized LCA calculations for different scenarios, years, metals, and technologies.
+    Compute scaled LCA results for each row in df_demand_agg.
+    df_demand_agg must contain:
+        scenario, year, metal, metal_demand_kg
     """
+
     results = []
-    years = ["2022", "2030", "2035", "2040", "2045", "2050"]
 
-    for index, row in df.iterrows():
+    for idx, row in df_demand_agg.iterrows():
+        scenario = row["Scenario"]
+        year = str(row["Year"])
         metal = row["Metal"]
-        technology = row["Technology"]
+        qty = float(row["Metal_demand_kg"])
 
-        for year in years:
-            quantity = row[str(year)]  # Get the metal quantity for the year
-            activity_name = (scenario_prefix, year, metal, technology)
-            activity = activities_dict.get(activity_name, None)
+        key = (scenario, year, metal)
+        activity = activities_dict.get(key, None)
 
-            if activity:
-                impact_results = {}
+        impact_results = {}
 
-                try:
-                    # Initialize LCA object once per activity
-                    lca = LCA({activity: quantity}, lcia_methods[0])  # Use first method as reference
-                    lca.lci()
+        if activity is None:
+            for m in lcia_methods:
+                impact_results[m[2]] = np.nan
 
-                    for method in lcia_methods:
-                        lca.switch_method(method)  # Switch to a new impact method without recalculating LCI
-                        lca.lcia()
-                        impact_results[method[2]] = lca.score
+        else:
+            try:
+                lca = LCA({activity: qty}, lcia_methods[0])
+                lca.lci()
 
-                except:
-                    for method in lcia_methods:
-                        impact_results[method[2]] = np.nan  # Assign NaN if calculation fails
+                for method in lcia_methods:
+                    lca.switch_method(method)
+                    lca.lcia()
+                    impact_results[method[2]] = lca.score
 
-                results.append({
-                    "Scenario": scenario_prefix,
-                    "Year": year,
-                    "Metal": metal,
-                    "Technology": technology,
-                    **impact_results
-                })
+            except:
+                for m in lcia_methods:
+                    impact_results[m[2]] = np.nan
+
+        results.append({
+            "Scenario": scenario,
+            "Year": year,
+            "Metal": metal,
+            "Demand_kg": qty,
+            **impact_results
+        })
 
     return pd.DataFrame(results)
