@@ -72,7 +72,7 @@ def run_lca(inventories, amount, lcia_methods):
 def compute_midpoint_contributions(
     inventories,
     amount=1,
-    damage_version="IMPACT World+ Damage 2.1_regionalized for ecoinvent v3.10"
+    damage_version="IMPACT World+ Damage 2.1 for ecoinvent v3.10"
 ):
     """
     For each activity in `inventories`, computes midpoint→endpoint damage shares
@@ -242,3 +242,150 @@ def run_scenario_lca(df_demand_agg, activities_dict, lcia_methods):
         })
 
     return pd.DataFrame(results)
+
+
+def direct_bio_and_first_tier_tech(
+    inventory_dict,
+    method_id,
+    amount=1.0,
+    threshold=0.0,          # share threshold (0–1)
+    top=None,               # top N per (lci_name, flow_type)
+    cache_supplier_scores=True,
+    supplier_score_cache=None,
+):
+    """
+    For each {lci_name: activity} in inventory_dict:
+      - Direct biosphere contributions (foreground activity only)
+      - First-tier technosphere contributions (direct inputs only)
+
+    Returns a single DataFrame with:
+      ['lci_name', 'activity_name', 'flow_type',
+       'name', 'reference_product', 'categories',
+       'unit', 'location',
+       'impact_score', 'share_%', 'total_score']
+    """
+
+    if not isinstance(inventory_dict, dict) or len(inventory_dict) == 0:
+        raise ValueError("inventory_dict must be a non-empty dict: {lci_name: bw_activity}")
+
+    if supplier_score_cache is None:
+        supplier_score_cache = {}
+
+    rows_all = []
+
+    # Preload CFs once
+    cfs = dict(bw.Method(method_id).load())
+
+    for lci_name, activity in inventory_dict.items():
+
+        # --- Foreground LCA once ---
+        lca_fg = bw.LCA({activity.key: amount}, method_id)
+        lca_fg.lci()
+        lca_fg.lcia()
+
+        total = float(lca_fg.score) if lca_fg.score else 1e-30
+
+        # Version-safe scaling
+        if hasattr(lca_fg, "activity_dict"):
+            idx = lca_fg.activity_dict[activity.key]
+            scale = float(lca_fg.supply_array[idx])
+        else:
+            ra, rp, rb = lca_fg.reverse_dict()
+            inv_ra = {v: k for k, v in ra.items()}
+            idx = inv_ra[activity.key]
+            scale = float(lca_fg.supply_array[idx])
+
+        activity_name = activity.get("name")
+
+        # =========================
+        # 1) Direct biosphere
+        # =========================
+        for exc in activity.biosphere():
+            flow = exc.input
+            cf = float(cfs.get(flow.key, 0.0))
+            if cf == 0.0:
+                continue
+
+            impact = float(exc["amount"]) * scale * cf
+            share = impact / total
+
+            if share < threshold:
+                continue
+
+            rows_all.append({
+                "lci_name": lci_name,
+                "activity_name": activity_name,
+                "flow_type": "Biosphere (direct)",
+                "name": flow.get("name"),
+                "reference_product": None,
+                "categories": flow.get("categories"),
+                "unit": flow.get("unit"),
+                "location": None,
+                "impact_score": impact,
+                "share_%": 100 * share,
+                "total_score": total,
+            })
+
+        # =========================
+        # 2) First-tier technosphere
+        # =========================
+        for exc in activity.technosphere():
+            supplier = exc.input
+            req_amount = float(exc["amount"]) * scale
+
+            sup_key = supplier.key
+            if cache_supplier_scores and sup_key in supplier_score_cache:
+                sup_score = supplier_score_cache[sup_key]
+            else:
+                lca_sup = bw.LCA({supplier.key: 1.0}, method_id)
+                lca_sup.lci()
+                lca_sup.lcia()
+                sup_score = float(lca_sup.score) if lca_sup.score else 0.0
+                if cache_supplier_scores:
+                    supplier_score_cache[sup_key] = sup_score
+
+            impact = req_amount * sup_score
+            share = impact / total
+
+            if share < threshold:
+                continue
+
+            rows_all.append({
+                "lci_name": lci_name,
+                "activity_name": activity_name,
+                "flow_type": "Technosphere (first-tier)",
+                "name": supplier.get("name"),
+                "reference_product": supplier.get("reference product"),
+                "categories": None,
+                "unit": supplier.get("unit"),
+                "location": supplier.get("location"),
+                "impact_score": impact,
+                "share_%": 100 * share,
+                "total_score": total,
+            })
+
+    df = pd.DataFrame(rows_all)
+
+    if df.empty:
+        return pd.DataFrame(columns=[
+            "lci_name","activity_name","flow_type","name",
+            "reference_product","categories","unit","location",
+            "impact_score","share_%","total_score"
+        ])
+
+    # Sort within each LCI
+    df = (
+        df.sort_values(["lci_name", "flow_type", "share_%"],
+                       ascending=[True, True, False])
+          .reset_index(drop=True)
+    )
+
+    # Optional: keep top N per LCI & flow type
+    if top is not None:
+        df = (
+            df.groupby(["lci_name", "flow_type"], group_keys=False)
+              .head(top)
+              .reset_index(drop=True)
+        )
+
+    return df
