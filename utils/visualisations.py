@@ -4,51 +4,110 @@ from matplotlib.patches import Patch
 import matplotlib.ticker as mticker
 import matplotlib.colors as mcolors
 import pandas as pd
-import seaborn as sns
+#import seaborn as sns
+from matplotlib.ticker import FuncFormatter, AutoMinorLocator
+import plotly.graph_objects as go
+
 
 
 def plot_metal_demand_facets(
     df,
     variable_col="Variable",   # Column for technology breakdown (e.g. "Battery_type", "Mode")
     tech_colors=None,
-    threshold=0.01,            # group techs < 1% within each metal into "Other"
+    threshold=None,            # group techs < threshold within each metal into "Other"
     ncols=6,
     figsize=(14, 10),
     dpi=350,
     savepath=None,
     add_total_line=False,
+    legend_ncol=4,             # wrap legend to avoid exceeding figure width
+    legend_fontsize=14,
+    sci_y_threshold=1e3,       # if ymax < this (and >0) -> use scientific notation for that subplot
 ):
     """
-    Compact grid of stacked-bar subplots.
-    One subplot per Metal, stacked by variable_col (e.g., technology, battery type, mode).
-    Groups small categories below threshold into "Other".
-    Generates unique pastel colors if tech_colors not provided.
+    Publication-ready grid of stacked-bar subplots (one subplot per Metal),
+    stacked by variable_col (e.g., technology, battery type, mode).
+
+    Style:
+    - NO grid (robustly disabled even after pandas plotting)
+    - Black contour (spines) around each subplot
+    - Bold titles
+    - Hide '0' label on y-axis
+    - For small magnitudes (e.g., Yttrium), switch to scientific notation per subplot
+    - Global legend wrapped (legend_ncol) to avoid exceeding figure width
+
+    Expected columns in df:
+    - Metal
+    - Year
+    - Metal_demand_t
+    - variable_col
     """
 
     # ---- Helper: unique color generator ----
     def generate_unique_colors(n):
-        """Generate n visually distinct pastel colors."""
-        hsv = [(i / n, 0.4 + 0.3*np.random.rand(), 0.9) for i in range(n)]
-        rgb = [mcolors.hsv_to_rgb(h) for h in hsv]
-        return [mcolors.to_hex(c) for c in rgb]
+
+        cmap = plt.get_cmap("tab20")  # 20 couleurs qualitatives distinctes
+        colors = [mcolors.to_hex(cmap(i)) for i in range(min(n, 20))]
+
+        # si >20 catégories, on complète avec tab20b/tab20c (rare chez toi)
+        if n > 20:
+            cmap2 = plt.get_cmap("tab20b")
+            colors += [mcolors.to_hex(cmap2(i)) for i in range(min(n - 20, 20))]
+        if n > 40:
+            cmap3 = plt.get_cmap("tab20c")
+            colors += [mcolors.to_hex(cmap3(i)) for i in range(n - 40)]
+
+        return colors[:n]
+
+    # ---- Helper: style each axis (publication) ----
+    def style_axis(ax):
+        # Remove grids robustly (pandas can re-enable)
+        ax.grid(False)
+        ax.xaxis.grid(False)
+        ax.yaxis.grid(False)
+
+        # Black box around subplot
+        for spine in ax.spines.values():
+            spine.set_visible(True)
+            spine.set_color("black")
+            spine.set_linewidth(0.8)
+
+        # Ticks style
+        ax.tick_params(axis="both", which="major", labelsize=7, length=3, width=0.7)
+        ax.tick_params(axis="both", which="minor", length=2, width=0.5)
+
+    # ---- Formatter: hide 0 label + compact units ----
+    def y_formatter_no_zero(x, pos):
+        if np.isclose(x, 0.0):
+            return ""
+        if x >= 1e6:
+            return f"{x/1e6:.0f}M"
+        if x >= 1e3:
+            return f"{x/1e3:.0f}k"
+        # Keep integers for small values (avoid "0.0")
+        if abs(x - int(x)) < 1e-9:
+            return f"{int(x)}"
+        return f"{x:g}"
 
     # ---- Clean & guard ----
     d0 = df.copy()
     if variable_col not in d0.columns:
         raise KeyError(f"❌ Column '{variable_col}' not found in dataframe.")
+    for col in ["Metal", "Year", "Metal_demand_t"]:
+        if col not in d0.columns:
+            raise KeyError(f"❌ Missing required column: '{col}'")
 
     d0 = d0[d0["Metal"].notna() & d0[variable_col].notna()]
     d0["Metal"] = d0["Metal"].astype(str).str.strip()
     d0[variable_col] = d0[variable_col].astype(str).str.strip()
     d0["Year"] = d0["Year"].astype(int)
 
-    # ---- Generate unique colors if none provided ----
+    # ---- Colors ----
     if tech_colors is None:
         unique_vars = sorted(d0[variable_col].unique())
-        color_list = generate_unique_colors(len(unique_vars))
-        tech_colors = dict(zip(unique_vars, color_list))
-        if "Other" in tech_colors:
-            tech_colors["Other"] = "#999999"
+        tech_colors = dict(zip(unique_vars, generate_unique_colors(len(unique_vars))))
+    # Force Other grey if present later
+    tech_colors["Other"] = "#000000"
 
     # ---- Grid setup ----
     metals = sorted(d0["Metal"].unique().tolist())
@@ -56,101 +115,129 @@ def plot_metal_demand_facets(
     nrows = int(np.ceil(n_metals / ncols))
 
     fig, axes = plt.subplots(
-        nrows=nrows, ncols=ncols, figsize=figsize, dpi=dpi, sharex=False, sharey=False
+        nrows=nrows, ncols=ncols, figsize=figsize, dpi=dpi,
+        sharex=False, sharey=False
     )
-    axes = axes.flatten()
+    axes = np.array(axes).flatten()
 
     legend_labels = set()
 
     for i, metal in enumerate(metals):
         ax = axes[i]
-        d_m = d0[d0["Metal"] == metal]
+        d_m = d0[d0["Metal"] == metal].copy()
 
-        # ---- Group small categories ----
+        # ---- Group small categories into Other (within this metal) ----
         totals = d_m.groupby(variable_col)["Metal_demand_t"].sum().sort_values(ascending=False)
-        share = totals / totals.sum() if totals.sum() != 0 else totals * 0
-        small = share[share < threshold].index.tolist()
-
-        d_m = d_m.copy()
-        if len(small) > 0:
-            d_m.loc[d_m[variable_col].isin(small), variable_col] = "Other"
+        denom = totals.sum()
+        if denom > 0 and threshold is not None:
+            share = totals / denom
+            small = share[share < threshold].index.tolist()
+            if small:
+                d_m.loc[d_m[variable_col].isin(small), variable_col] = "Other"
 
         # ---- Pivot ----
-        pivot = d_m.pivot_table(index="Year", columns=variable_col, values="Metal_demand_t",
-                                aggfunc="sum", fill_value=0).sort_index()
+        pivot = d_m.pivot_table(
+            index="Year", columns=variable_col, values="Metal_demand_t",
+            aggfunc="sum", fill_value=0
+        ).sort_index()
 
-        # ---- Skip empty subplots ----
-        if pivot.sum().sum() == 0:
-            ax.set_title(metal, fontsize=8, pad=1)
+        # ---- Empty subplot handling ----
+        if pivot.to_numpy().sum() == 0:
+            ax.set_title(metal, fontsize=8, fontweight="bold", pad=2)
             ax.set_xticks([2020, 2030, 2040, 2050])
             ax.set_xticklabels(["2020", "2030", "2040", "2050"], fontsize=7)
-            ax.tick_params(axis="y", labelsize=7)
-            ax.grid(False)
+            ax.set_xlabel("")
+            ax.set_ylabel("")
+            ax.yaxis.set_major_formatter(mticker.FuncFormatter(y_formatter_no_zero))
+            style_axis(ax)
             continue
 
-        # ---- Determine colors ----
-        cols = pivot.columns.tolist()
-        bar_colors = [
-            "#999999" if c == "Other" else tech_colors.get(c, "#cccccc") for c in cols
-        ]
+        # ---- Ensure "Other" plotted last if present ----
+        if "Other" in pivot.columns:
+            cols = [c for c in pivot.columns if c != "Other"] + ["Other"]
+            pivot = pivot[cols]
 
-        # ---- Plot ----
-        pivot.plot(kind="bar", stacked=True, ax=ax, color=bar_colors, width=0.9, legend=False)
+        cols = pivot.columns.tolist()
         legend_labels.update(cols)
 
-        # ---- Format ticks and title ----
-        ax.tick_params(axis="x", labelrotation=0, labelsize=7)
-        ax.tick_params(axis="y", labelsize=7)
-        ax.yaxis.set_major_formatter(
-            mticker.FuncFormatter(
-                lambda x, p: f"{x/1e6:.0f}M" if x >= 1e6 else (f"{x/1e3:.0f}k" if x >= 1e3 else f"{int(x)}")
-            )
+        bar_colors = [tech_colors.get(c, "#cccccc") for c in cols]
+
+        # ---- Plot (pandas) ----
+        pivot.plot(
+            kind="bar",
+            stacked=True,
+            ax=ax,
+            color=bar_colors,
+            width=0.9,
+            legend=False,
+            linewidth=0,          # remove segment borders
+            edgecolor="none"
         )
+
+        # ---- Titles bold ----
+        ax.set_title(metal, fontsize=8, fontweight="bold", pad=2)
+
+        # ---- X ticks: show decades only ----
         years = pivot.index.tolist()
         tick_positions = np.arange(len(years))
         tick_labels = [str(y) if (y % 10 == 0) else "" for y in years]
         ax.set_xticks(tick_positions)
-        ax.set_xticklabels(tick_labels, fontsize=7)
-        ax.set_title(metal, fontsize=8, pad=1)
+        ax.set_xticklabels(tick_labels, fontsize=7, rotation=0)
+
+        # ---- Y formatting: scientific for very small magnitudes ----
+        ymax = float(pivot.to_numpy().max())
+        if (ymax > 0) and (ymax < sci_y_threshold):
+            ax.ticklabel_format(axis="y", style="sci", scilimits=(0, 0))
+            ax.yaxis.get_offset_text().set_size(7)
+            # hide 0 label even in sci mode
+            ax.yaxis.set_major_formatter(
+                mticker.FuncFormatter(lambda x, p: "" if np.isclose(x, 0.0) else f"{x:g}")
+            )
+        else:
+            ax.yaxis.set_major_formatter(mticker.FuncFormatter(y_formatter_no_zero))
+
         ax.set_xlabel("")
         ax.set_ylabel("")
 
+        # Optional total line
         if add_total_line:
             totals_by_year = pivot.sum(axis=1).values
-            ax.plot(tick_positions, totals_by_year, linewidth=1.2, color="black", alpha=0.6)
+            ax.plot(tick_positions, totals_by_year, linewidth=1.0, color="black", alpha=0.6)
+
+        # ---- Force style AFTER plotting (kills unwanted grids) ----
+        style_axis(ax)
 
     # ---- Remove unused axes ----
-    for j in range(i + 1, len(axes)):
+    for j in range(n_metals, len(axes)):
         fig.delaxes(axes[j])
 
     # ---- Global legend ----
-    labels_sorted = sorted(list(legend_labels), key=lambda x: (x != "Other", x))
-    handles = []
-    for lab in labels_sorted:
-        color = "#999999" if lab == "Other" else tech_colors.get(lab, "#cccccc")
-        handles.append(Patch(facecolor=color, edgecolor="none", label=lab))
+    labels_sorted = sorted(list(legend_labels), key=lambda x: (x == "Other", x))  # Other last
+    handles = [
+        Patch(facecolor=tech_colors.get(lab, "#cccccc"), edgecolor="none", label=lab)
+        for lab in labels_sorted
+    ]
 
     if handles:
         fig.legend(
             handles=handles,
             labels=[h.get_label() for h in handles],
             loc="lower center",
-            bbox_to_anchor=(0.5, 0.01),
-            ncol=min(len(handles), 8),
-            fontsize=12,
+            bbox_to_anchor=(0.5, -0.03),
+            ncol=min(len(handles), legend_ncol),
+            fontsize=legend_fontsize,
             frameon=False,
+            handlelength=1.2,
+            columnspacing=0.9,
         )
 
-    fig.tight_layout(rect=[0, 0.05, 1, 0.97])
-    fig.subplots_adjust(hspace=0.5, wspace=0.2, bottom=0.14)
+    # Layout
+    fig.tight_layout(rect=[0, 0.06, 1, 0.98])
+    fig.subplots_adjust(hspace=0.45, wspace=0.20, bottom=0.14)
 
     if savepath:
-        fig.savefig(f"{savepath}.png", bbox_inches="tight")
-        fig.savefig(f"{savepath}.svg", bbox_inches="tight")
-        print(f"✅ Saved to {savepath}.png / .svg")
-
-    #plt.show()
-
+        fig.savefig(f"{savepath}.pdf", bbox_inches="tight")
+        print(f"✅ Saved to {savepath}.pdf")
 
 
 def plot_metal_demand_stackplots(
@@ -158,240 +245,534 @@ def plot_metal_demand_stackplots(
     variable_col="Variable",
     metal_colors=None,
     tech_colors=None,
-    figsize=(8, 12),
-    dpi=350,
-    ncol_legend=4,
-    threshold=0.01,
+    figsize=(15, 6),
+    dpi=600,
+    ncol_legend_left=3,
+    ncol_legend_right=3,
+    threshold_tech=0.05,      # aggregate small tech categories into "Other" (left only)
+    threshold_metal=None,     # keep metals separate by default (right)
     savepath=None,
 ):
     """
-    Plot two stacked area charts:
-    (1) total metal demand by variable_col (e.g. technology, mode, battery type)
+    Publication-ready side-by-side stacked area charts:
+    (1) total metal demand by variable_col (Technology / Mode / Battery type, etc.)
     (2) total metal demand by metal
-    Small categories (< threshold of total) are grouped as 'Other'.
-    If color dicts are missing, generate distinct random colors.
+
+    Features:
+    - side-by-side layout
+    - bold titles
+    - black contour (spines) around each subplot
+    - no grid
+    - remove white seams between stacked areas (edgecolor none)
+    - y ticks on both subplots (including right side ticks), but ylabel only on left
+    - hide '0' tick label on y-axis
+    - optional aggregation into "Other" ONLY for left subplot (threshold_tech)
+    - metals kept separate unless threshold_metal is provided
+
+    Expected columns in df:
+    - Year
+    - Metal
+    - Metal_demand_t
+    - variable_col (default "Variable")
     """
 
     # ---- Helper to group small contributors ----
     def group_small_categories(df_pivot, threshold):
-        total_all = df_pivot.sum(axis=1).sum()
-        total_per_cat = df_pivot.sum()
+        if threshold is None:
+            return df_pivot
+        total_all = df_pivot.to_numpy().sum()
+        if total_all == 0:
+            return df_pivot
+
+        total_per_cat = df_pivot.sum(axis=0)
         share = total_per_cat / total_all
         small_cats = share[share < threshold].index
-        if len(small_cats) > 0:
-            df_grouped = df_pivot.copy()
-            df_grouped["Other"] = df_pivot[small_cats].sum(axis=1)
-            df_grouped = df_grouped.drop(columns=small_cats)
-        else:
-            df_grouped = df_pivot
+
+        if len(small_cats) == 0:
+            return df_pivot
+
+        df_grouped = df_pivot.copy()
+        df_grouped["Other"] = df_pivot[small_cats].sum(axis=1)
+        df_grouped = df_grouped.drop(columns=small_cats)
         return df_grouped
 
-    # ---- Helper to generate unique random colors ----
+    # ---- Helper to generate unique colors ----
     def generate_unique_colors(n):
-        """Generate n distinct pastel colors."""
-        hsv = [(i / n, 0.5 + 0.3*np.random.rand(), 0.9) for i in range(n)]
+        """Generate n distinct pastel-ish colors."""
+        n = max(int(n), 1)
+        hsv = [(i / n, 0.55 + 0.25 * np.random.rand(), 0.92) for i in range(n)]
         rgb = [mcolors.hsv_to_rgb(h) for h in hsv]
         return [mcolors.to_hex(c) for c in rgb]
 
     # ---- Guard / Clean ----
     d0 = df.copy()
+    if "Metal" not in d0.columns or "Year" not in d0.columns or "Metal_demand_t" not in d0.columns:
+        raise KeyError("❌ df must contain columns: 'Year', 'Metal', 'Metal_demand_t'.")
+
     d0 = d0[d0["Metal"].notna()]
     if variable_col not in d0.columns:
         raise KeyError(f"❌ Column '{variable_col}' not found in dataframe.")
     d0 = d0[d0[variable_col].notna()]
 
-    # ---- Prepare data ----
-    data_var = d0.pivot_table(index="Year", columns=variable_col, values="Metal_demand_t", aggfunc="sum", fill_value=0)
-    data_met = d0.pivot_table(index="Year", columns="Metal", values="Metal_demand_t", aggfunc="sum", fill_value=0)
+    # ---- Prepare data (pivot) ----
+    data_var = d0.pivot_table(
+        index="Year", columns=variable_col, values="Metal_demand_t",
+        aggfunc="sum", fill_value=0
+    ).sort_index()
 
-    # ---- Apply grouping ----
-    data_var = group_small_categories(data_var, threshold)
-    data_met = group_small_categories(data_met, threshold)
+    data_met = d0.pivot_table(
+        index="Year", columns="Metal", values="Metal_demand_t",
+        aggfunc="sum", fill_value=0
+    ).sort_index()
 
-    # ---- Generate unique colors ----
+    # ---- Apply grouping (LEFT only by default) ----
+    data_var = group_small_categories(data_var, threshold_tech)
+    data_met = group_small_categories(data_met, threshold_metal)
+
+    # ---- Keep "Other" last if present ----
+    def move_other_last(df_pivot):
+        if "Other" in df_pivot.columns:
+            cols = [c for c in df_pivot.columns if c != "Other"] + ["Other"]
+            return df_pivot[cols]
+        return df_pivot
+
+    data_var = move_other_last(data_var)
+    data_met = move_other_last(data_met)
+
+    # ---- Colors ----
     if tech_colors is None:
-        color_list = generate_unique_colors(len(data_var.columns))
-        tech_colors = dict(zip(data_var.columns, color_list))
-        if "Other" in tech_colors:
-            tech_colors["Other"] = "#999999"
-
+        tech_colors = dict(zip(data_var.columns, generate_unique_colors(len(data_var.columns))))
     if metal_colors is None:
-        color_list = generate_unique_colors(len(data_met.columns))
-        metal_colors = dict(zip(data_met.columns, color_list))
-        if "Other" in metal_colors:
-            metal_colors["Other"] = "#999999"
+        metal_colors = dict(zip(data_met.columns, generate_unique_colors(len(data_met.columns))))
+
+    # Force "Other" to grey if present
+    if "Other" in data_var.columns:
+        tech_colors["Other"] = "#999999"
+    if "Other" in data_met.columns:
+        metal_colors["Other"] = "#999999"
+
+    # ---- Formatter: hide 0 label on y-axis ----
+    def hide_zero_formatter(x, pos):
+        return "" if np.isclose(x, 0.0) else f"{x:g}"
+    yfmt = FuncFormatter(hide_zero_formatter)
+
+    # ---- Axis styling ----
+    def style_axis(ax, show_ylabel=False):
+        ax.grid(False)
+
+        # black contour around each subplot
+        for spine in ax.spines.values():
+            spine.set_visible(True)
+            spine.set_linewidth(0.9)
+            spine.set_color("black")
+
+        # ticks (major + minor), and show ticks on the right side too
+        ax.minorticks_on()
+        ax.yaxis.set_minor_locator(AutoMinorLocator(2))
+        ax.tick_params(axis="both", labelsize=12)
+        ax.tick_params(axis="y", which="major", length=4, width=0.8, left=True, right=False)
+        ax.tick_params(axis="y", which="minor", length=2, width=0.6, left=True, right=False)
+
+        ax.yaxis.set_major_formatter(yfmt)
+
+        if show_ylabel:
+            ax.set_ylabel("tonnes", fontsize=14)
+        else:
+            ax.set_ylabel("")
 
     # ---- Figure ----
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=figsize, dpi=dpi, sharex=True)
-
-    # ---- 1️⃣ By Variable ----
-    colors_var = [tech_colors.get(v, "#cccccc") for v in data_var.columns]
-    ax1.stackplot(data_var.index, data_var.T, labels=data_var.columns, colors=colors_var)
-    ax1.set_title(f"Total metal demand by {variable_col}", fontsize=9, fontweight="bold")
-    ax1.set_ylabel("Metal demand (t)")
-    ax1.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=12)
-
-    # ---- 2️⃣ By Metal ----
-    colors_met = [metal_colors.get(m, "#cccccc") for m in data_met.columns]
-    ax2.stackplot(data_met.index, data_met.T, labels=data_met.columns, colors=colors_met)
-    ax2.set_title("Total metal demand by metal", fontsize=9, fontweight="bold")
-    ax2.set_ylabel("Metal demand (t)")
-    ax2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=ncol_legend, frameon=False, fontsize=12)
-
-    # ---- Layout ----
-    fig.tight_layout(rect=[0, 0, 1, 0.94])
-    fig.subplots_adjust(hspace=0.5)
-
-    if savepath:
-        fig.savefig(f"{savepath}.png", bbox_inches="tight")
-        fig.savefig(f"{savepath}.svg", bbox_inches="tight")
-        print(f"✅ Figure saved to {savepath}.png and .svg")
-
-    #plt.show()
-
-
-def plot_scenario_difference(
-    df,
-    scenario_col="Scenario",
-    value_col="Metal_demand_t",
-    variable_col="Metal",     # or "Variable"
-    scenario_a="High",
-    scenario_b="Low",
-    kind="bar",               # or "strip"
-    figsize=(8, 5),
-    dpi=300,
-    alphabetical=True,        # ✅ NEW
-    savepath=None,
-):
-    """
-    Plot % difference between two scenarios (scenario_a vs scenario_b)
-    across metals or technologies.
-
-    Formula: (A - B) / B * 100
-    Positive = higher in scenario_a
-    Negative = lower in scenario_a
-    """
-
-    # --- Data checks ---
-    for col in [scenario_col, value_col, variable_col]:
-        if col not in df.columns:
-            raise KeyError(f"❌ Column '{col}' not found in DataFrame.")
-
-    # --- Aggregate ---
-    agg = (
-        df.groupby([scenario_col, variable_col])[value_col]
-        .sum()
-        .reset_index()
-        .pivot(index=variable_col, columns=scenario_col, values=value_col)
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=figsize, dpi=dpi, sharex=True, sharey=True
     )
 
-    if scenario_a not in agg.columns or scenario_b not in agg.columns:
-        raise ValueError(f"Scenarios '{scenario_a}' and/or '{scenario_b}' not found in '{scenario_col}'.")
+    # ---- 1) By variable (Technology) ----
+    colors_var = [tech_colors.get(v, "#cccccc") for v in data_var.columns]
+    ax1.stackplot(
+        data_var.index, data_var.T,
+        labels=data_var.columns,
+        colors=colors_var,
+        edgecolor="none", linewidth=0, antialiased=True,   # remove white seams
+    )
+    #ax1.set_title(f"Total metal demand by {variable_col}", fontsize=11, fontweight="bold", pad=8)
+    style_axis(ax1, show_ylabel=True)
 
-    # --- Compute % difference ---
-    agg["% difference"] = (agg[scenario_a] - agg[scenario_b]) / agg[scenario_b] * 100
+    ax1.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.15),
+        ncol=ncol_legend_left,
+        frameon=False,
+        fontsize=14,
+        handlelength=1.2,
+        columnspacing=1.0,
+        borderaxespad=0.0,
+    )
 
-    # ✅ Sort alphabetically or by magnitude
-    if alphabetical:
-        agg = agg.sort_index()
-    else:
-        agg = agg.sort_values("% difference", ascending=False)
+    # ---- 2) By metal ----
+    colors_met = [metal_colors.get(m, "#cccccc") for m in data_met.columns]
+    ax2.stackplot(
+        data_met.index, data_met.T,
+        labels=data_met.columns,
+        colors=colors_met,
+        edgecolor="none", linewidth=0, antialiased=True,   # remove white seams
+    )
+    #ax2.set_title("Total metal demand by metal", fontsize=11, fontweight="bold", pad=8)
+    style_axis(ax2, show_ylabel=False)
 
-    # --- Plot ---
-    plt.figure(figsize=figsize, dpi=dpi)
-    sns.set_style("whitegrid")
+    ax2.legend(
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.15),
+        ncol=ncol_legend_right,
+        frameon=False,
+        fontsize=14,
+        handlelength=1.2,
+        columnspacing=1.0,
+        borderaxespad=0.0,
+    )
 
-    # Generate color palette: green = positive, red = negative
-    colors = ["#2ca02c" if x > 0 else "#d62728" for x in agg["% difference"]]
-
-    if kind == "bar":
-        ax = sns.barplot(
-            data=agg.reset_index(),
-            x=variable_col,
-            y="% difference",
-            palette=colors,
-        )
-        plt.axhline(0, color="black", linewidth=1)
-        plt.xticks(rotation=90, ha="right")
-        plt.xlabel('')
-        plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
-        plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
-        ax.yaxis.set_major_formatter(mticker.PercentFormatter())
-    else:
-        ax = sns.stripplot(
-            data=agg.reset_index(),
-            x=variable_col,
-            y="% difference",
-            hue="% difference" > 0,
-            palette={True: "#2ca02c", False: "#d62728"},
-            size=8,
-        )
-        plt.axhline(0, color="black", linewidth=1)
-        plt.legend([], [], frameon=False)
-        plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
-        plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
-
-    plt.tight_layout()
+    # ---- Layout: reserve bottom space for legends ----
+    fig.subplots_adjust(wspace=0.05, bottom=0.28, top=0.90)
 
     if savepath:
-        plt.savefig(f"{savepath}.png", bbox_inches="tight")
-        plt.savefig(f"{savepath}.svg", bbox_inches="tight")
-        print(f"✅ Saved to {savepath}.png / .svg")
-
-    #plt.show()
-
-    return agg[["% difference"]]
+        #fig.savefig(f"{savepath}.png", bbox_inches="tight")
+        #fig.savefig(f"{savepath}.svg", bbox_inches="tight")
+        fig.savefig(f"{savepath}.pdf", bbox_inches="tight")
+        print(f"✅ Figure saved to {savepath}.png, .svg and .pdf")
 
 
-
-def plot_masse_stats_per_clas(df, col_clas="CLAS", col_mass="MASSE_NETTE"):
+def plot_sankey_cumulative_tech_metal(
+    df,
+    value_col="Metal_demand_t",
+    scenario=None,
+    country=None,
+    year_min=None,
+    year_max=None,
+    top_n_metals=None,
+    top_n_techs=None,
+    output_html="sankey_cumulative_tech_metal.html",
+    output_pdf=None,                 # optional PDF path (requires kaleido)
+    pdf_width=2200,                  # bigger for publication
+    pdf_height=1300,
+    # style
+    template="plotly_white",
+    tech_node_color="rgba(210,210,210,1.0)",
+    link_alpha=0.55,
+    metal_color_map=None,            # dict: {"Copper":"rgba(...)", ...} optional
+    font_size=22,                    # bigger labels
+    node_thickness=20,
+    node_pad=18,
+    # keep labels inside canvas (avoid clipping)
+    domain_x=(0.02, 0.98),
+    domain_y=(0.02, 0.98),
+):
     """
-    Compute summary statistics and plot a styled boxplot of mass per CLAS.
+    Publication-ready Sankey (Technology -> Metal), cumulative over selected years.
 
-    Parameters
-    ----------
-    df : pd.DataFrame
-        DataFrame containing at least columns for class and mass.
-    col_clas : str, default="CLAS"
-        Column name for the vehicle class.
-    col_mass : str, default="MASSE_NETTE"
-        Column name for the vehicle mass (numeric).
+    Fixes vs default:
+    - No title (clean figure)
+    - Larger, black text
+    - Larger canvas + margins
+    - Sankey domain tightened to avoid right/left clipping
+    - Higher node pad & thickness for readability
+    - PDF export: high resolution vector via kaleido
     """
-    # Ensure numeric
-    df = df.copy()
-    df[col_mass] = pd.to_numeric(df[col_mass], errors="coerce")
-    df = df.dropna(subset=[col_clas, col_mass])
 
-    # Summary stats
-    summary = df.groupby(col_clas)[col_mass].agg(
-        Mean="mean",
-        Median="median",
-        Min="min",
-        Max="max",
-        Count="count",
-        Q25=lambda x: x.quantile(0.25),
-        Q75=lambda x: x.quantile(0.75),
-    ).sort_values("Mean", ascending=False)
+    d = df.copy()
 
-    # --- Plot ---
-    plt.figure(figsize=(12, 10))
-    sns.boxplot(x=col_clas, y=col_mass, data=df, showfliers=False, palette="Set3")
+    # infer defaults
+    if scenario is None and "Scenario" in d.columns:
+        scen = d["Scenario"].dropna().unique()
+        scenario = scen[0] if len(scen) else None
+    if country is None and "Country" in d.columns:
+        ctry = d["Country"].dropna().unique()
+        country = ctry[0] if len(ctry) else None
 
-    # Add number of samples above each box
-    counts = df[col_clas].value_counts()
-    positions = range(len(counts))
-    for pos, clas in enumerate(counts.index):
-        plt.text(pos, df.loc[df[col_clas]==clas, col_mass].max() * 1.02,
-                 f"n={counts[clas]}", ha="center", fontsize=9, color="black")
+    # filters
+    if scenario is not None and "Scenario" in d.columns:
+        d = d[d["Scenario"] == scenario]
+    if country is not None and "Country" in d.columns:
+        d = d[d["Country"] == country]
+    if year_min is not None:
+        d = d[d["Year"] >= year_min]
+    if year_max is not None:
+        d = d[d["Year"] <= year_max]
 
-    plt.xticks(rotation=90)
-    plt.title("Distribution of Vehicle Mass (MASSE_NETTE) per CLAS")
-    plt.xlabel("CLAS")
-    plt.ylabel("MASSE_NETTE (kg)")
-    plt.tight_layout()
-    plt.show()
+    if d.empty:
+        raise ValueError("No data left after filtering (scenario/country/year).")
 
-    return summary
+    agg = (
+        d.groupby(["Technology", "Metal"], dropna=False)[value_col]
+        .sum()
+        .reset_index()
+    )
+
+    if top_n_metals is not None:
+        top_metals = (
+            agg.groupby("Metal")[value_col].sum()
+            .sort_values(ascending=False)
+            .head(top_n_metals)
+            .index
+        )
+        agg = agg[agg["Metal"].isin(top_metals)]
+
+    if top_n_techs is not None:
+        top_techs = (
+            agg.groupby("Technology")[value_col].sum()
+            .sort_values(ascending=False)
+            .head(top_n_techs)
+            .index
+        )
+        agg = agg[agg["Technology"].isin(top_techs)]
+
+    agg["Technology"] = agg["Technology"].fillna("Unknown technology")
+    agg["Metal"] = agg["Metal"].fillna("Unknown metal")
+
+    # Optional: drop zero links (avoids clutter)
+    agg = agg[agg[value_col].astype(float) > 0].copy()
+    if agg.empty:
+        raise ValueError("All links are zero after aggregation/filtering.")
+
+    techs = sorted(agg["Technology"].unique().tolist())
+    metals = sorted(agg["Metal"].unique().tolist())
+
+    nodes = techs + metals
+    node_index = {n: i for i, n in enumerate(nodes)}
+
+    # --- Colors ---
+    default_palette = [
+        "rgba(31,119,180,1)",   # blue
+        "rgba(255,127,14,1)",   # orange
+        "rgba(44,160,44,1)",    # green
+        "rgba(214,39,40,1)",    # red
+        "rgba(148,103,189,1)",  # purple
+        "rgba(140,86,75,1)",    # brown
+        "rgba(227,119,194,1)",  # pink
+        "rgba(127,127,127,1)",  # gray
+        "rgba(188,189,34,1)",   # olive
+        "rgba(23,190,207,1)",   # cyan
+    ]
+
+    if metal_color_map is None:
+        metal_color_map = {}
+
+    metal_colors = {}
+    for i, m in enumerate(metals):
+        metal_colors[m] = metal_color_map.get(m, default_palette[i % len(default_palette)])
+
+    node_colors = [tech_node_color] * len(techs) + [metal_colors[m] for m in metals]
+
+    def with_alpha(rgba_str, alpha):
+        if rgba_str.startswith("rgba(") and rgba_str.endswith(")"):
+            inner = rgba_str[5:-1]
+            parts = inner.split(",")
+            if len(parts) >= 3:
+                r = parts[0].strip()
+                g = parts[1].strip()
+                b = parts[2].strip()
+                return f"rgba({r},{g},{b},{alpha})"
+        return rgba_str
+
+    link_colors = [with_alpha(metal_colors[m], link_alpha) for m in agg["Metal"].tolist()]
+
+    # Build sankey
+    sankey = go.Sankey(
+        arrangement="snap",
+        domain=dict(x=list(domain_x), y=list(domain_y)),  # prevents edge clipping
+        node=dict(
+            pad=node_pad,
+            thickness=node_thickness,
+            label=nodes,
+            color=node_colors,
+            line=dict(color="black", width=0.8),
+        ),
+        link=dict(
+            source=agg["Technology"].map(node_index).astype(int).tolist(),
+            target=agg["Metal"].map(node_index).astype(int).tolist(),
+            value=agg[value_col].astype(float).tolist(),
+            color=link_colors,
+        ),
+    )
+
+    fig = go.Figure(data=[sankey])
+
+    # Clean layout: no title
+    fig.update_layout(
+        template=template,
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        font=dict(color="black", size=font_size),
+        height=pdf_height if output_pdf else 900,
+        margin=dict(l=30, r=30, t=10, b=10),  # extra margins avoid cut
+    )
+
+    # Write HTML
+    if output_html:
+        fig.write_html(output_html, include_plotlyjs="cdn")
+
+    # Default PDF name
+    if output_pdf is None and output_html and output_html.lower().endswith(".html"):
+        output_pdf = output_html[:-5] + ".pdf"
+
+    # Write PDF (vector) via kaleido
+    if output_pdf:
+        try:
+            fig.write_image(
+                output_pdf,
+                format="pdf",
+                width=pdf_width,
+                height=pdf_height,
+                scale=1,
+            )
+        except Exception as e:
+            raise RuntimeError(
+                "PDF export failed. Install kaleido with: pip install -U kaleido\n"
+                f"Original error: {e}"
+            )
+
+    return fig, agg
+
+
+# def plot_scenario_difference(
+#     df,
+#     scenario_col="Scenario",
+#     value_col="Metal_demand_t",
+#     variable_col="Metal",     # or "Variable"
+#     scenario_a="High",
+#     scenario_b="Low",
+#     kind="bar",               # or "strip"
+#     figsize=(8, 5),
+#     dpi=300,
+#     alphabetical=True,        # ✅ NEW
+#     savepath=None,
+# ):
+#     """
+#     Plot % difference between two scenarios (scenario_a vs scenario_b)
+#     across metals or technologies.
+#
+#     Formula: (A - B) / B * 100
+#     Positive = higher in scenario_a
+#     Negative = lower in scenario_a
+#     """
+#
+#     # --- Data checks ---
+#     for col in [scenario_col, value_col, variable_col]:
+#         if col not in df.columns:
+#             raise KeyError(f"❌ Column '{col}' not found in DataFrame.")
+#
+#     # --- Aggregate ---
+#     agg = (
+#         df.groupby([scenario_col, variable_col])[value_col]
+#         .sum()
+#         .reset_index()
+#         .pivot(index=variable_col, columns=scenario_col, values=value_col)
+#     )
+#
+#     if scenario_a not in agg.columns or scenario_b not in agg.columns:
+#         raise ValueError(f"Scenarios '{scenario_a}' and/or '{scenario_b}' not found in '{scenario_col}'.")
+#
+#     # --- Compute % difference ---
+#     agg["% difference"] = (agg[scenario_a] - agg[scenario_b]) / agg[scenario_b] * 100
+#
+#     # ✅ Sort alphabetically or by magnitude
+#     if alphabetical:
+#         agg = agg.sort_index()
+#     else:
+#         agg = agg.sort_values("% difference", ascending=False)
+#
+#     # --- Plot ---
+#     plt.figure(figsize=figsize, dpi=dpi)
+#     sns.set_style("whitegrid")
+#
+#     # Generate color palette: green = positive, red = negative
+#     colors = ["#2ca02c" if x > 0 else "#d62728" for x in agg["% difference"]]
+#
+#     if kind == "bar":
+#         ax = sns.barplot(
+#             data=agg.reset_index(),
+#             x=variable_col,
+#             y="% difference",
+#             palette=colors,
+#         )
+#         plt.axhline(0, color="black", linewidth=1)
+#         plt.xticks(rotation=90, ha="right")
+#         plt.xlabel('')
+#         plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
+#         plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
+#         ax.yaxis.set_major_formatter(mticker.PercentFormatter())
+#     else:
+#         ax = sns.stripplot(
+#             data=agg.reset_index(),
+#             x=variable_col,
+#             y="% difference",
+#             hue="% difference" > 0,
+#             palette={True: "#2ca02c", False: "#d62728"},
+#             size=8,
+#         )
+#         plt.axhline(0, color="black", linewidth=1)
+#         plt.legend([], [], frameon=False)
+#         plt.ylabel(f"% difference {scenario_a} vs {scenario_b}")
+#         plt.title(f"Relative difference in {value_col} between {scenario_a} and {scenario_b}")
+#
+#     plt.tight_layout()
+#
+#     if savepath:
+#         plt.savefig(f"{savepath}.png", bbox_inches="tight")
+#         plt.savefig(f"{savepath}.svg", bbox_inches="tight")
+#         print(f"✅ Saved to {savepath}.png / .svg")
+#
+#     #plt.show()
+#
+#     return agg[["% difference"]]
+
+
+
+# def plot_masse_stats_per_clas(df, col_clas="CLAS", col_mass="MASSE_NETTE"):
+#     """
+#     Compute summary statistics and plot a styled boxplot of mass per CLAS.
+#
+#     Parameters
+#     ----------
+#     df : pd.DataFrame
+#         DataFrame containing at least columns for class and mass.
+#     col_clas : str, default="CLAS"
+#         Column name for the vehicle class.
+#     col_mass : str, default="MASSE_NETTE"
+#         Column name for the vehicle mass (numeric).
+#     """
+#     # Ensure numeric
+#     df = df.copy()
+#     df[col_mass] = pd.to_numeric(df[col_mass], errors="coerce")
+#     df = df.dropna(subset=[col_clas, col_mass])
+#
+#     # Summary stats
+#     summary = df.groupby(col_clas)[col_mass].agg(
+#         Mean="mean",
+#         Median="median",
+#         Min="min",
+#         Max="max",
+#         Count="count",
+#         Q25=lambda x: x.quantile(0.25),
+#         Q75=lambda x: x.quantile(0.75),
+#     ).sort_values("Mean", ascending=False)
+#
+#     # --- Plot ---
+#     plt.figure(figsize=(12, 10))
+#     sns.boxplot(x=col_clas, y=col_mass, data=df, showfliers=False, palette="Set3")
+#
+#     # Add number of samples above each box
+#     counts = df[col_clas].value_counts()
+#     positions = range(len(counts))
+#     for pos, clas in enumerate(counts.index):
+#         plt.text(pos, df.loc[df[col_clas]==clas, col_mass].max() * 1.02,
+#                  f"n={counts[clas]}", ha="center", fontsize=9, color="black")
+#
+#     plt.xticks(rotation=90)
+#     plt.title("Distribution of Vehicle Mass (MASSE_NETTE) per CLAS")
+#     plt.xlabel("CLAS")
+#     plt.ylabel("MASSE_NETTE (kg)")
+#     plt.tight_layout()
+#     plt.show()
+#
+#     return summary
 
 
 
