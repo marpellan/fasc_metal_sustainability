@@ -21,9 +21,9 @@ INVENTORIES = {
     #"Nd mining World": (),
 
 
-    # Refining
+    # Refining or Mining+refining
     ## CA
-    "Cu refining CA": ("copper production, cathode, solvent extraction and electrowinning process", "copper, cathode", 'CA'),
+    "Cu mining+refining CA": ("copper production, cathode, solvent extraction and electrowinning process", "copper, cathode", 'CA'),
     "Ni refining CA": ("processing of nickel-rich materials", "nickel, class 1", 'CA'),
     "Li refining CA": ("lithium carbonate production, from spodumene", "lithium carbonate", 'CA'),
     "Co refining CA": ("cobalt sulfate production, from copper mining, economic allocation", "cobalt sulfate", 'CA'),
@@ -31,8 +31,8 @@ INVENTORIES = {
     "Nd refining CA": ("rare earth oxides production, from rare earth carbonate concentrate", "neodymium oxide", 'CA'),
 
     ## World
-    "Cu refining World": ("market for copper, cathode", "copper, cathode", 'World'),
-    "Ni refining World": ("market for nickel, class 1", "nickel, class 1", 'World'),
+    "Cu mining+refining World": ("copper production, cathode, solvent extraction and electrowinning process", "copper, cathode", 'World'),
+    "Ni refining World": ("processing of nickel-rich materials", "nickel, class 1", 'GLO'),
     "Li refining World": ("lithium (Li) global market", "li commodities", 'GLO'),
     "Co refining World": ("market for cobalt sulfate", "cobalt sulfate", 'World'),
     "C refining World": ("synthetic graphite production, battery grade", "synthetic graphite, battery grade", 'CN'),
