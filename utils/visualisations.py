@@ -240,6 +240,12 @@ def plot_metal_demand_facets(
         print(f"✅ Saved to {savepath}.pdf")
 
 
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+from matplotlib.ticker import FuncFormatter, AutoMinorLocator, FixedLocator
+
+
 def plot_metal_demand_stackplots(
     df,
     variable_col="Variable",
@@ -249,8 +255,9 @@ def plot_metal_demand_stackplots(
     dpi=600,
     ncol_legend_left=3,
     ncol_legend_right=3,
-    threshold_tech=0.05,      # aggregate small tech categories into "Other" (left only)
-    threshold_metal=None,     # keep metals separate by default (right)
+    threshold_tech=0.05,     # aggregate small tech categories into "Other" (left only)
+    threshold_metal=None,    # keep metals separate by default (right)
+    year_step=5,             # spacing between x-axis ticks
     savepath=None,
 ):
     """
@@ -266,6 +273,7 @@ def plot_metal_demand_stackplots(
     - remove white seams between stacked areas (edgecolor none)
     - y ticks on both subplots (including right side ticks), but ylabel only on left
     - hide '0' tick label on y-axis
+    - x-axis ticks forced to start at the actual min year, evenly spaced by year_step
     - optional aggregation into "Other" ONLY for left subplot (threshold_tech)
     - metals kept separate unless threshold_metal is provided
 
@@ -356,6 +364,13 @@ def plot_metal_demand_stackplots(
         return "" if np.isclose(x, 0.0) else f"{x:g}"
     yfmt = FuncFormatter(hide_zero_formatter)
 
+    # ---- Year range (shared across both subplots) ----
+    year_min = int(min(data_var.index.min(), data_met.index.min()))
+    year_max = int(max(data_var.index.max(), data_met.index.max()))
+    xticks = list(range(year_min, year_max + 1, year_step))
+    if xticks[-1] != year_max:
+        xticks.append(year_max)
+
     # ---- Axis styling ----
     def style_axis(ax, show_ylabel=False):
         ax.grid(False)
@@ -366,14 +381,20 @@ def plot_metal_demand_stackplots(
             spine.set_linewidth(0.9)
             spine.set_color("black")
 
-        # ticks (major + minor), and show ticks on the right side too
+        # y ticks (major + minor), shown on left only
         ax.minorticks_on()
         ax.yaxis.set_minor_locator(AutoMinorLocator(2))
         ax.tick_params(axis="both", labelsize=12)
         ax.tick_params(axis="y", which="major", length=4, width=0.8, left=True, right=False)
         ax.tick_params(axis="y", which="minor", length=2, width=0.6, left=True, right=False)
-
         ax.yaxis.set_major_formatter(yfmt)
+
+        # x ticks: force start at year_min, evenly spaced, no auto-rounding
+        ax.set_xlim(year_min, year_max)
+        ax.xaxis.set_major_locator(FixedLocator(xticks))
+        ax.xaxis.set_minor_locator(AutoMinorLocator(2))
+        ax.tick_params(axis="x", which="major", length=4, width=0.8)
+        ax.tick_params(axis="x", which="minor", length=2, width=0.6)
 
         if show_ylabel:
             ax.set_ylabel("tonnes", fontsize=14)
@@ -393,7 +414,6 @@ def plot_metal_demand_stackplots(
         colors=colors_var,
         edgecolor="none", linewidth=0, antialiased=True,   # remove white seams
     )
-    #ax1.set_title(f"Total metal demand by {variable_col}", fontsize=11, fontweight="bold", pad=8)
     style_axis(ax1, show_ylabel=True)
 
     ax1.legend(
@@ -415,7 +435,6 @@ def plot_metal_demand_stackplots(
         colors=colors_met,
         edgecolor="none", linewidth=0, antialiased=True,   # remove white seams
     )
-    #ax2.set_title("Total metal demand by metal", fontsize=11, fontweight="bold", pad=8)
     style_axis(ax2, show_ylabel=False)
 
     ax2.legend(
@@ -430,13 +449,13 @@ def plot_metal_demand_stackplots(
     )
 
     # ---- Layout: reserve bottom space for legends ----
-    fig.subplots_adjust(wspace=0.05, bottom=0.28, top=0.90)
+    fig.subplots_adjust(wspace=0.12, bottom=0.28, top=0.90)
 
     if savepath:
-        #fig.savefig(f"{savepath}.png", bbox_inches="tight")
-        #fig.savefig(f"{savepath}.svg", bbox_inches="tight")
         fig.savefig(f"{savepath}.pdf", bbox_inches="tight")
-        print(f"✅ Figure saved to {savepath}.png, .svg and .pdf")
+        print(f"✅ Figure saved to {savepath}.pdf")
+
+    return fig, (ax1, ax2)
 
 
 def plot_sankey_cumulative_tech_metal(
